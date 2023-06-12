@@ -13,6 +13,7 @@ class User extends ORM {
     protected $date_updated;
     protected $status = 0;
     protected $role;
+    protected $token;
 
     const ROLE_ADMIN     = "admin";
     const ROLE_SUSCRIBER = "suscriber";
@@ -127,7 +128,9 @@ class User extends ORM {
      */
     public function setDateInserted(Int $date_inserted): void
     {
-        $this->date_inserted = date("Y-m-d h:i:s", $date_inserted);
+        if(!$this->date_inserted) {
+            $this->date_inserted = date("Y-m-d h:i:s", $date_inserted);
+        }
     }
 
     /**
@@ -190,5 +193,21 @@ class User extends ORM {
         }
 
         return $rolePermissionLevel;
+    }
+
+    /**
+     * @return string
+     */
+    public function getToken(): string
+    {
+        return $this->token;
+    }
+
+    /**
+     * @param string $status
+     */
+    public function setToken(string $token): void
+    {
+        $this->token = $token;
     }
 }

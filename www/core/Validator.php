@@ -36,11 +36,11 @@ class Validator
     }
 
 
-    public static function minLength(int $value, int $length): bool
+    public static function minLength(string $value, int $length): bool
     {
         return strlen(trim($value))>=$length;
     }
-    public static function maxLength(int $value, int $length): bool
+    public static function maxLength(string $value, int $length): bool
     {
         return strlen(trim($value))<=$length;
     }

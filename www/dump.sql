@@ -12,8 +12,9 @@ CREATE TABLE "public"."esgi_user" (
                                       "pwd" character varying(255) NOT NULL,
                                       "date_inserted" timestamp NOT NULL,
                                       "date_updated" timestamp,
-                                      "status" boolean NOT NULL,
+                                      "status" smallint NOT NULL,
                                       "role" character varying(60) NOT NULL,
+                                      "token" character varying(20),
                                       CONSTRAINT "esgi_user_pkey" PRIMARY KEY ("id")
 ) WITH (oids = false);
 
