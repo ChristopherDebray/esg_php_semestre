@@ -36,59 +36,6 @@ class Login extends Validator {
                     "id"=>"input-pwd",
                     "class"=>"input-text"
                 ],
-                "radioTest"=>[
-                    "type"=>"radio",
-                    "id"=>"input-radioTest",
-                    "class"=>"input-text",
-                    "error"=>"Vous devez séléctioner une valeur",
-                    "group"=>"radioTest",
-                    "options"=>[
-                        [
-                            "label"=>"one",
-                            "value"=>"one"
-                        ],
-                        [
-                            "label"=>"two",
-                            "value"=>"two"
-                        ],
-                    ],
-                ],
-                "checkboxTest"=>[
-                    "type"=>"checkbox",
-                    "id"=>"input-checkboxTest",
-                    "class"=>"input-text",
-                    "error"=>"Vous devez séléctioner une valeur",
-                    "options"=>[
-                        [
-                            "id"=>"checkboxOne",
-                            "label"=>"checkboxOne",
-                            "name"=>"checkboxOne",
-                            "value"=>"checkboxOne"
-                        ],
-                        [
-                            "id"=>"checkboxTwo",
-                            "label"=>"checkboxTwo",
-                            "name"=>"checkboxTwo",
-                            "value"=>"checkboxTwo"
-                        ],
-                    ],
-                ],
-                "selectTest"=>[
-                    "type"=>"select",
-                    "id"=>"input-selectTest",
-                    "class"=>"input-text",
-                    "error"=>"Vous devez séléctioner une valeur",
-                    "options"=>[
-                        [
-                            "label"=>"selectOne",
-                            "value"=>"selectOne"
-                        ],
-                        [
-                            "label"=>"selectTwo",
-                            "value"=>"selectTwo"
-                        ],
-                    ],
-                ]
             ]
         ];
 

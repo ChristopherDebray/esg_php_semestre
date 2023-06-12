@@ -5,7 +5,9 @@ namespace App\core;
 final class ConnectDB
 {
     private $pdo;
-    public function __construct(){
+    static $instance = null;
+
+    private function __construct(){
         try{
             $this->pdo = new \PDO(DB_DRIVER.":host=".DB_HOST.";dbname=".DB_NAME.";port=".DB_PORT, DB_USER, DB_PWD);
         }catch (\Exception $e){
@@ -16,5 +18,14 @@ final class ConnectDB
     public function getPdo()
     {
         return $this->pdo;
+    }
+
+    public static function getInstance()
+    {  
+        if(is_null(self::$instance))
+        {
+            self::$instance = new self();
+        }
+        return self::$instance;
     }
 }

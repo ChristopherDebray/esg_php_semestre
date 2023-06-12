@@ -5,34 +5,28 @@ use App\Forms\Register;
 use App\Forms\Login;
 use App\models\User;
 use App\core\ORM;
-use App\Service\EntityManager\User\UserEntityManager;
-use App\Service\EntityManager\BaseEntityManager;
 
 final class Security
 {
-    private UserEntityManager $userEntityManager;
-
-    public function __construct() {
-        // $this->baseEntityManager = new BaseEntityManager();
-        $this->userEntityManager = new UserEntityManager();
-    }
-
     public function login()
     {
+        $userTest = new User();
         $form = new Login();
+
         if($form->isSubmited() && $form->isValid()){
             $inputedPassword = $_POST["pwd"];
-            $user = $this->userEntityManager->getOneBy("email", $_POST['email'], User::getTable());
+            $user = $userTest->getOneBy("email", $_POST['email']);
 
             if (!$user) {
                 $form->addError("Identifiant incorrect.");
             } else {
-                $isPasswordCorrect = $form->isPasswordCorrect($inputedPassword, $user->pwd);
+                $isPasswordCorrect = $form->isPasswordCorrect($inputedPassword, $user->getPwd());
                 if ($isPasswordCorrect) {
-                    $_SESSION['user'] = get_object_vars($user);
-                    echo "<pre>";
-                    var_dump($_SESSION['user']);
-                    echo "</pre>";
+                    $token = $this->createToken();
+                    $user->setToken($token);
+                    $user->save();
+                    $_SESSION['token'] = $token;
+                    $_SESSION['user'] = "pouet";
                 }
             }
         }
@@ -68,5 +62,12 @@ final class Security
     public function logout()
     {
         die("logout");
+    }
+
+    private function createToken() {
+        $token = md5(uniqid()."jq2à,?".time());
+        $token = substr($token, 0, rand(10,20));
+        $token = str_shuffle($token);
+        return $token;
     }
 }

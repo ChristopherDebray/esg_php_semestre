@@ -8,7 +8,7 @@ abstract class ORM{
 
     public function __construct($table = null){
         $this->table = $table ? $table : self::getTable();
-        $connectDb = new ConnectDB();
+        $connectDb = ConnectDB::getInstance();
         $this->pdo = $connectDb->getPdo();
     }
 
@@ -28,7 +28,7 @@ abstract class ORM{
     public static function getOneBy($column, $value, $table = null)
     {
         $table = $table ? $table : self::getTable();
-        $connectDb = new ConnectDB();
+        $connectDb = ConnectDB::getInstance();
         $queryPrepared = $connectDb->getPdo()->prepare("SELECT * FROM ".$table.
                             " WHERE ".$column."=:".$column);
         $queryPrepared->execute([$column=>$value]);
@@ -40,7 +40,7 @@ abstract class ORM{
     public static function getAll($table = null)
     {
         $table = $table ? $table : self::getTable();
-        $connectDb = new ConnectDB();
+        $connectDb = ConnectDB::getInstance();
         $queryPrepared = $connectDb->getPdo()->prepare("SELECT * FROM ".$table);
         $queryPrepared->execute();
         $queryPrepared->setFetchMode(\PDO::FETCH_CLASS, get_called_class());
