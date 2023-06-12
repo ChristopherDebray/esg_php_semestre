@@ -17,33 +17,12 @@ class Security{
         return false;
     }
 
-    public static function hasRoleAdmin(): bool
-    {
-        if (self::isConnected()) {
-            return $_SESSION['role'] === User::ROLE_ADMIN;
-        }
-    }
-
-    public static function hasRoleSuscriber(): bool
-    {
-        if (self::isConnected()) {
-            return $_SESSION['role'] === User::ROLE_SUSCRIBER;
-        }
-    }
-
-    public static function hasRoleGuest(): bool
-    {
-        if (self::isConnected()) {
-            return $_SESSION['role'] === User::ROLE_GUEST;
-        }
-    }
-
-    public static function hasRole(string $role): bool
+    public static function hasRole(array $roles): bool
     {
         if (!self::isConnected()) {
             die('nope');
         }
 
-        return $_SESSION['role'] === $role;
+        return in_array($_SESSION['role'], $roles);
     }
 }

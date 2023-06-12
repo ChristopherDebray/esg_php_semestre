@@ -62,6 +62,7 @@ final class Security
 
     public function logout()
     {
+        session_destroy();
         die("logout");
     }
 
