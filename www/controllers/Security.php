@@ -10,12 +10,12 @@ final class Security
 {
     public function login()
     {
-        $userTest = new User();
+        $userEntity = new User();
         $form = new Login();
 
         if($form->isSubmited() && $form->isValid()){
             $inputedPassword = $_POST["pwd"];
-            $user = $userTest->getOneBy("email", $_POST['email']);
+            $user = $userEntity->getOneBy("email", $_POST['email']);
 
             if (!$user) {
                 $form->addError("Identifiant incorrect.");
@@ -26,7 +26,8 @@ final class Security
                     $user->setToken($token);
                     $user->save();
                     $_SESSION['token'] = $token;
-                    $_SESSION['user'] = "pouet";
+                    $_SESSION['id'] = $user->getId();
+                    $_SESSION['role'] = $user->getRole();
                 }
             }
         }
@@ -61,6 +62,7 @@ final class Security
 
     public function logout()
     {
+        session_destroy();
         die("logout");
     }
 

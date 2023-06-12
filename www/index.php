@@ -1,8 +1,11 @@
 <?php
 namespace App;
 
+use App\core\Router;
+
 session_start();
 require "conf.inc.php";
+require_once "./core/Router.php";
 
 spl_autoload_register(function ($class)
 {
@@ -23,6 +26,10 @@ if(!file_exists("routes.yml")){
     die("Le fichier routes.yml n'existe pas");
 }
 
+$router = new Router();
+$router->getRoute($uri);
+
+/*
 $routes  = yaml_parse_file("routes.yml");
 
 //Si l'uri n'existe pas dans $routes die page 404
@@ -59,4 +66,4 @@ if(!method_exists($controller, $a)){
 //Front->contact();
 $controller->$a();
 
-
+*/

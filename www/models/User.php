@@ -168,7 +168,7 @@ class User extends ORM {
     /**
      * @return array
      */
-    public function getRole(): int
+    public function getRole(): string
     {
         return $this->role;
     }
@@ -176,7 +176,7 @@ class User extends ORM {
     /**
      * @param array $role
      */
-    public function setRole(int $role): void
+    public function setRole(string $role): void
     {
         $this->role = $role;
     }

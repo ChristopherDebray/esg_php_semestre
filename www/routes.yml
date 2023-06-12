@@ -5,6 +5,7 @@ default:
 contact:
   controller: "Front"
   action: "contact"
+  permission: ["admin"]
 
 se-connecter:
   controller: "Security"
