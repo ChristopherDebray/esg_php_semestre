@@ -37,4 +37,13 @@ class Security{
             return $_SESSION['role'] === User::ROLE_GUEST;
         }
     }
+
+    public static function hasRole(string $role): bool
+    {
+        if (!self::isConnected()) {
+            die('nope');
+        }
+
+        return $_SESSION['role'] === $role;
+    }
 }

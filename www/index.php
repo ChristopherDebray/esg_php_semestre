@@ -1,8 +1,11 @@
 <?php
 namespace App;
 
+use App\core\Router;
+
 session_start();
 require "conf.inc.php";
+require_once "./core/Router.php";
 
 spl_autoload_register(function ($class)
 {
@@ -23,6 +26,10 @@ if(!file_exists("routes.yml")){
     die("Le fichier routes.yml n'existe pas");
 }
 
+$router = new Router();
+$router->getRoute($uri);
+
+/*
 $routes  = yaml_parse_file("routes.yml");
 
 //Si l'uri n'existe pas dans $routes die page 404
@@ -49,7 +56,6 @@ if(!class_exists($namespaceController.$c)){
     die("La classe ".$c." n'existe pas");
 }
 
-/** @TODO add the singleton principle to the controller call and if possible to the action */
 $controller = new ($namespaceController.$c)(); //new Front();
 
 //Sinon appel de l'action
@@ -60,4 +66,4 @@ if(!method_exists($controller, $a)){
 //Front->contact();
 $controller->$a();
 
-
+*/
