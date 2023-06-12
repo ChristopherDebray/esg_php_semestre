@@ -1,0 +1,29 @@
+.container {
+  overflow-x: hidden;
+  .row {
+    @for $i from 1 through 5 {
+      &.gx--#{$i} {
+        --grid-column-gap: calc(5px * #{$i});
+      }
+    }
+    display: flex;
+    flex-wrap: wrap;
+    margin: 4px calc(var(--grid-column-gap) * -1) !important;
+    & .col {
+      min-height: 50px;
+      padding: 4px var(--grid-column-gap);
+      @for $i from 1 through 12 {
+        &-#{$i} {
+          width: 8.3% * $i;
+          @each $size, $value in $breakpoint {
+            @media (max-width: $value) {
+              &-#{$size} {
+                width: 8.3% * $i;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

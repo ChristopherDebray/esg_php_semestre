@@ -1,0 +1,33 @@
+.slideshow {
+  position: relative;
+  margin: auto;
+  .slide {
+    display: none;
+    width: 100%;
+    img {
+      width: 100%;
+    }
+  }
+  .previous_slide, .next_slide {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2rem;
+    height: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: rgba(255,255,255,0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .previous_slide {
+    left: 20px;
+  }
+
+  .next_slide {
+    right: 20px;
+  }
+}

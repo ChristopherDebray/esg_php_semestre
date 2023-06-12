@@ -1,0 +1,12 @@
+@mixin cover-bg() {
+  background: no-repeat center;
+}
+
+@mixin border-radius($value) {
+  border-radius: $value !important;
+}
+
+@function rem($pixelValue) {
+  $baseRemValue: 16;
+  @return calc($pixelValue / $baseRemValue) * 1rem;
+}

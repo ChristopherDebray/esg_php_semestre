@@ -1,0 +1,16 @@
+.card {
+  border: 1px var(--grey);
+  display: flex;
+  flex-wrap: wrap;
+  &-body, & .list-group {
+    padding: 5px;
+  }
+  &-body {
+
+  }
+  & .list-group {
+    .list-group__item {
+
+    }
+  }
+}

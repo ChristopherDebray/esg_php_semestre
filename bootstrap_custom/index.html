@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./dist/main.css">
+  <title>Grid custom</title>
+  <script defer src="./src/js/slideshow.js"></script>
+  <script defer src="./src/js/navbar.js"></script>
+</head>
+<body>
+  <h1>My Website</h1>
+  <nav>
+    <span class="nav-toggle" id="js-nav-toggle">
+        O
+    </span>
+    <div class="logo">
+    </div>
+    <ul id="js-menu">
+        <li>
+          <a href="#">Discover</a>
+        </li>
+        <li>
+          <a href="#">How it works</a>
+        </li>
+        <li>
+          <a href="#">Reviews</a>
+        </li>
+        <li>
+          <a href="#">Blog</a>
+        </li>
+        <li>
+          <div class="dropdown">
+            <button class="dropbtn">Dropdown 
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <a href="#">Link 1</a>
+              <a href="#">Link 2</a>
+              <a href="#">Link 3</a>
+            </div>
+          </div> 
+        </li>
+    </ul>
+  </nav>
+
+
+  <main>
+    <section class="container">
+      <div class="row">
+        <div class="col col-2 col-6-md col-2-sm">
+          <div class="bg--secondary wh-100"></div>
+        </div>
+        <div class="col col-2 col-6-md col-2-sm">
+          <div class="bg--secondary wh-100"></div>
+        </div>
+        <div class="col col-8 col-12-md col-12-sm">
+          <div class="bg--secondary wh-100"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-12 col-12-md col-12-sm">
+          <div class="bg--success wh-100"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-4 col-4-md col-12-sm">
+          <div class="bg--danger wh-100"></div>
+        </div>
+        <div class="col col-4 col-4-md col-6-sm">
+          <div class="bg--danger wh-100"></div>
+        </div>
+        <div class="col col-4 col-4-md col-6-sm">
+          <div class="bg--danger wh-100"></div>
+        </div>
+      </div>
+      <div class="row gx--1">
+        <div class="col col-6 col-6-md col-12-sm">
+          <div class="bg--warning wh-100"></div>
+        </div>
+        <div class="col col-6 col-6-md col-12-sm">
+          <div class="bg--warning wh-100"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-3 col-6-md col-6-sm">
+          <div class="bg--info wh-100"></div>
+        </div>
+        <div class="col col-3 col-6-md col-6-sm">
+          <div class="bg--info wh-100"></div>
+        </div>
+        <div class="col col-3 col-6-md col-12-sm">
+          <div class="bg--info wh-100"></div>
+        </div>
+        <div class="col col-3 col-6-md col-12-sm">
+          <div class="bg--info wh-100"></div>
+        </div>
+      </div>
+    </section>
+
+    <div>
+      <h2>Buttons</h2>
+      <button class="button button--danger">danger</button>
+      <button class="button button--warning">warning</button>
+      <button class="button button--info">info</button>
+      <button class="button button--disabled">disabled</button>
+      <button class="button button--success button--outline">success</button>
+    </div>
+
+    <div>
+      <h2>TEXTES</h2>
+      <p class="text--danger">danger</p>
+      <p class="text--warning">warning</p>
+      <p class="text--info">info</p>
+      <p class="text--disabled">disabled</p>
+      <p class="text--success">success</p>
+
+      <h2>TEXTES -- tailles</h2>
+      <p class="text--danger font--xs">XS</p>
+      <p class="text--warning font--sm">SM</p>
+      <p class="text--info font--md">MD</p>
+      <p class="text--disabled font--lg">LG</p>
+      <p class="text--success font--xl">XL</p>
+      <p class="text--success font--xxl">XXL</p>
+      <p class="text--success font--xxxl">XXXL</p>
+    </div>
+
+    <div>
+      <h2>LINKS</h2>
+      <a href="#" class="link--danger">danger</a>
+      <a href="#" class="link--warning">warning</a>
+      <a href="#" class="link--info">info</a>
+      <a href="#" class="link--disabled">disabled</a>
+      <a href="#" class="link--success">success</a>
+    </div>
+
+    <div>
+      <span class="badge badge--success">Success</span>
+      <span class="badge badge--danger">Danger</span>
+      <span class="badge badge--warning">Warning</span>
+      <span class="badge badge--info">Info</span>
+      <span class="badge badge--disabled">Disabled</span>
+      <p>test</p>
+    </div>
+
+    <div class="slideshow">
+      <div class="slide">
+        <img src="https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg" alt="">
+      </div>
+      <div class="slide">
+        <img src="https://www.doubledtrailers.com/assets/images/random%20horse%20facts%20shareable.png" alt="">
+      </div>
+      <div class="slide">
+        <img src="https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/nintendo_switch_download_software_1/H2x1_NSwitchDS_LostInRandom_image1600w.jpg" alt="">
+      </div>
+
+      <span class="previous_slide" onclick="changeSlide(-1)"><</span>
+      <span class="next_slide" onclick="changeSlide(1)">></span>
+    </div>
+
+    <div>
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Cras justo odio</li>
+          <li class="list-group-item">Dapibus ac facilisis in</li>
+          <li class="list-group-item">Vestibulum at eros</li>
+        </ul>
+        <div class="card-body">
+          <a href="#" class="card-link">Card link</a>
+          <a href="#" class="card-link">Another link</a>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

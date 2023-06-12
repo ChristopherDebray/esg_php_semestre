@@ -1,0 +1,90 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--light-grey);
+}
+
+* {
+  box-sizing: border-box;
+  @each $name, $color in $colorVariants {
+    &[class*=--#{$name}] {
+      --bg-color: #{$color};
+      @if (lightness($color) > 50) {
+        --bg-color-hover: #{lighten($color, 10%)};
+        --text-color: var(--black);
+      } @else {
+        --bg-color-hover: #{darken($color, 10%)};
+        --text-color: var(--white);
+      }
+    }
+  }
+
+  &[class^=text--] {
+    color: var(--bg-color);
+  }
+
+  &[class^=bg--] {
+    background-color: var(--bg-color);
+  }
+
+  &[class^=link--] {
+    color: var(--bg-color);
+    border-bottom-width: 2px;
+    border-bottom-color: inherit;
+    border-bottom-style: solid;
+    text-decoration: none;
+    &:hover {
+      color: var(--bg-color-hover);
+    }
+  }
+
+}
+
+@each $size, $value in $fontSizes {
+  .font--#{$size}, h#{$size} {
+      font-size: $value !important;
+  }
+}
+
+@for $i from 1 through length($fontSizes) {
+  $headingKey: nth(map-keys($fontSizes), length($fontSizes) - $i + 1);
+  $fontSize: map-get($fontSizes, $headingKey);
+  h#{$i} { 
+    font-size: $fontSize;
+  }
+}
+
+.container {
+  margin: auto;
+  max-width: 1200px;
+  section {
+    max-width: 80%;
+  }
+}
+
+.wh-100 {
+  width: 100%;
+  height: 100%;
+}
+
+.rounded {
+  @each $name, $value in $roundedVariants {
+    &--#{$name} {
+      @include border-radius($value);
+    }
+  }
+}
+
+.badge {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  display: inline-block;
+  padding: 0.25em 0.4em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+}
