@@ -49,6 +49,7 @@ if(!class_exists($namespaceController.$c)){
     die("La classe ".$c." n'existe pas");
 }
 
+/** @TODO add the singleton principle to the controller call and if possible to the action */
 $controller = new ($namespaceController.$c)(); //new Front();
 
 //Sinon appel de l'action
