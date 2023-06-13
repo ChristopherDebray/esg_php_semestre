@@ -39,14 +39,6 @@ final class Security
 
     public function register()
     {
-        /*
-        $user = User::populate(4);
-        $user->setPwd("toto");
-        $user->save();
-
-        $this->userEntityManager->deleteOneBy("id", "4", User::getTable());
-        $this->userEntityManager->getAll(User::getTable());
-        */
         $form = new Register();
         if($form->isSubmited() && $form->isValid()){
             $newUser = new User();
