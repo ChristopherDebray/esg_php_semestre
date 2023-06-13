@@ -32,11 +32,6 @@ class User extends ORM {
         return serialize($this);
     }
 
-    public static function getEntityTable(): string
-    {
-        return "esgi_user";
-    }
-
     /**
      * @return int
      */
