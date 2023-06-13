@@ -15,7 +15,7 @@ class Register extends Validator {
             "config"=>[
                 "method"=>$this->method,
                 "action"=>"",
-                "class"=>"form",
+                "class"=>null,
                 "id"=>"form-register",
                 "submit"=>"S'inscrire",
                 "cancel"=>"Annuler"
@@ -26,7 +26,7 @@ class Register extends Validator {
                     "placeholder"=>"Votre prénom",
                     "required"=>true,
                     "id"=>"input-firstname",
-                    "class"=>"input-text",
+                    "class"=>null,
                     "min"=>2,
                     "max"=>60,
                     "error"=>"Votre prénom doit faire entre 2 et 60 caractères"
@@ -36,7 +36,7 @@ class Register extends Validator {
                     "placeholder"=>"Votre nom",
                     "required"=>true,
                     "id"=>"input-lastname",
-                    "class"=>"input-text",
+                    "class"=>null,
                     "min"=>2,
                     "max"=>120,
                     "error"=>"Votre nom doit faire entre 2 et 120 caractères"
@@ -46,7 +46,7 @@ class Register extends Validator {
                     "placeholder"=>"Votre email",
                     "required"=>true,
                     "id"=>"input-email",
-                    "class"=>"input-text",
+                    "class"=>null,
                     "error"=>"Votre email est incorrect"
                 ],
                 "pwd"=>[
@@ -54,14 +54,14 @@ class Register extends Validator {
                     "placeholder"=>"Votre mot de passe",
                     "required"=>true,
                     "id"=>"input-pwd",
-                    "class"=>"input-text"
+                    "class"=>null
                 ],
                 "password-confirm"=>[
                     "type"=>"password",
                     "placeholder"=>"Confirmation",
                     "required"=>true,
                     "id"=>"input-pwd-confirm",
-                    "class"=>"input-text",
+                    "class"=>null,
                     "confirm"=>"pwd"
                 ]
             ]

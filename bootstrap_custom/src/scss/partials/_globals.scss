@@ -54,11 +54,60 @@ body {
   }
 }
 
+ul, ol {
+  @include reset-list();
+}
+
 .container {
   margin: auto;
   max-width: 1200px;
   section {
     max-width: 80%;
+  }
+}
+
+@for $i from 0 through 5 {
+  $currentSpacer: ($spacer * ($i * .25)) !important;
+  .mt-#{$i} {
+    margin-top: $currentSpacer;
+  }
+  .mb-#{$i} {
+    margin-bottom: $currentSpacer;
+  }
+  .ml-#{$i} {
+    margin-left: $currentSpacer;
+  }
+  .mr-#{$i} {
+    margin-right: $currentSpacer;
+  }
+  .mx-#{$i} {
+    margin-left: $currentSpacer;
+    margin-right: $currentSpacer;
+  }
+  .my-#{$i} {
+    margin-top: $currentSpacer;
+    margin-bottom: $currentSpacer;
+  }
+
+  .pt-#{$i} {
+    padding-top: $currentSpacer;
+  }
+  .pb-#{$i} {
+    padding-bottom: $currentSpacer;
+  }
+  .pl-#{$i} {
+    padding-left: $currentSpacer;
+  }
+  .pr-#{$i} {
+    padding-right: $currentSpacer;
+  }
+  .px-#{$i} {
+    padding-left: $currentSpacer;
+    padding-right: $currentSpacer;
+  }
+  .py-#{$i} {
+    padding-top: $currentSpacer;
+    padding-bottom: $currentSpacer;
   }
 }
 

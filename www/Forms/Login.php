@@ -15,7 +15,7 @@ class Login extends Validator {
             "config"=>[
                 "method"=>$this->method,
                 "action"=>"",
-                "class"=>"form",
+                "class"=>null,
                 "id"=>"form-login",
                 "submit"=>"Se connecter",
                 "cancel"=>"Annuler"
@@ -26,7 +26,7 @@ class Login extends Validator {
                     "placeholder"=>"Votre email",
                     "required"=>true,
                     "id"=>"input-email",
-                    "class"=>"input-text",
+                    "class"=>null,
                     "error"=>"Votre email est incorrect"
                 ],
                 "pwd"=>[
@@ -34,7 +34,7 @@ class Login extends Validator {
                     "placeholder"=>"Votre mot de passe",
                     "required"=>true,
                     "id"=>"input-pwd",
-                    "class"=>"input-text"
+                    "class"=>null
                 ],
             ]
         ];

@@ -6,6 +6,12 @@
   border-radius: $value !important;
 }
 
+@mixin reset-list() {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
 @function rem($pixelValue) {
   $baseRemValue: 16;
   @return calc($pixelValue / $baseRemValue) * 1rem;

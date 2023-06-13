@@ -9,8 +9,9 @@
 <body>
 <h1>Comptes</h1>
 
-<!-- la vue  -->
+<main>
 <?php include $this->view; ?>
+</main>
 
 </body>
 </html>
