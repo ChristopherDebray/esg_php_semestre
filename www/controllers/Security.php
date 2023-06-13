@@ -1,15 +1,25 @@
 <?php
 namespace App\controllers;
+
 use App\core\View;
 use App\Forms\Register;
 use App\Forms\Login;
 use App\models\User;
 use App\core\ORM;
+use App\services\MailerService;
 
 final class Security
 {
+    private MailerService $mailerService;
+
+    public function __construct() {
+        $this->mailerService = new MailerService();
+    }
+
     public function login()
     {
+        $this->mailerService->sendEmail('test@outlook.fr', 'Confirmation de compte');
+
         $userEntity = new User();
         $form = new Login();
 
