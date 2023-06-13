@@ -1,0 +1,34 @@
+.button {
+  padding: 0.7em;
+  display: inline-block;
+  margin: 0;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  color: var(--white);
+  font-size: inherit;
+  line-height: 1;
+  display: inline-block;
+	outline: inherit;
+  transition: 0.2s;
+  background-color: var(--bg-color);
+  font-weight: 400;
+  @include border-radius(map-get($roundedVariants, "md"));
+  &:hover {
+    background-color: var(--bg-color-hover);
+  }
+  &--outline {
+    border: 2px solid var(--bg-color-hover);
+    color: var(--bg-color-hover);
+    background-color: var(--white);
+    &:hover {
+      color: white;
+    }
+  }
+
+  @each $size, $value in $fontSizes {
+    &--#{$size} {
+      font-size: $value !important;
+    }
+  }
+}
