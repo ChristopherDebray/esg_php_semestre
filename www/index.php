@@ -5,7 +5,6 @@ use App\core\Router;
 
 session_start();
 require "conf.inc.php";
-require_once "./core/Router.php";
 
 spl_autoload_register(function ($class)
 {
@@ -26,8 +25,7 @@ if(!file_exists("routes.yml")){
     die("Le fichier routes.yml n'existe pas");
 }
 
-$router = new Router();
-$router->getRoute($uri);
+$router = Router::getInstance($uri);
 
 /*
 $routes  = yaml_parse_file("routes.yml");
