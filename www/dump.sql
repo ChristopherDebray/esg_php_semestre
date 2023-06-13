@@ -2,10 +2,13 @@
 
 DROP TABLE IF EXISTS "esgi_user" CASCADE;
 DROP TABLE IF EXISTS "esgi_page";
+DROP TABLE IF EXISTS "esgi_page_comment";
 DROP SEQUENCE IF EXISTS esgi_user_id_seq;
 DROP SEQUENCE IF EXISTS esgi_page_id_seq;
+DROP SEQUENCE IF EXISTS esgi_page_comment_id_seq;
 CREATE SEQUENCE esgi_user_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1;
 CREATE SEQUENCE esgi_page_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1;
+CREATE SEQUENCE esgi_page_comment_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1;
 
 CREATE TABLE "public"."esgi_user" (
                                       "id" integer DEFAULT nextval('esgi_user_id_seq') NOT NULL,
@@ -36,7 +39,24 @@ CREATE TABLE "public"."esgi_page" (
                                     "config" jsonb NOT NULL,
                                     "content" jsonb NOT NULL,
                                     "theme" integer NOT NULL,
-                                    "status" integer NOT NULL
+                                    "status" integer NOT NULL,
+                                    CONSTRAINT "esgi_page_pkey" PRIMARY KEY ("id")
 );
+
+INSERT INTO "public"."esgi_page" (user_id, title, slug, date_inserted, date_updated, config, content, theme, status) VALUES (1, 'Toto Page', 'toto-page', '2023-06-13 09:30:38', '2023-06-13 09:30:38', '{"toto":[1,2]}', '{"toto":[1,2]}', 1, 1);
+
+CREATE TABLE "public"."esgi_page_comment" (
+                                            "id" integer DEFAULT nextval('esgi_page_comment_id_seq') NOT NULL,
+                                            "date_inserted" timestamp NOT NULL,
+                                            "status" integer NOT NULL,
+                                            "content" character varying(255) NOT NULL,
+                                            "user_id" integer NOT NULL,
+                                            CONSTRAINT fk_page_comment_user_id FOREIGN KEY(user_id) REFERENCES esgi_user(id),
+                                            "page_id" integer NOT NULL,
+                                            CONSTRAINT fk_page_comment_page_id FOREIGN KEY(page_id) REFERENCES esgi_page(id),
+                                            CONSTRAINT "esgi_page_comment_pkey" PRIMARY KEY ("id")
+);
+
+INSERT INTO "public"."esgi_page_comment" (date_inserted, status, content, user_id, page_id) VALUES ('2023-06-13 09:30:38', 1, 'toto', 1, 1);
 
 -- 2023-04-18 16:57:56.748799+00
