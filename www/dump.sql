@@ -27,6 +27,7 @@ CREATE TABLE "public"."esgi_user" (
     CONSTRAINT "esgi_user_pkey" PRIMARY KEY ("id")
 ) WITH (oids = false);
 ALTER TABLE "public"."esgi_user" ADD COLUMN "is_verified" smallint NOT NULL DEFAULT 0;
+ALTER TABLE "public"."esgi_user" ADD COLUMN "is_deleted" smallint NOT NULL DEFAULT 0;
 
 INSERT INTO "public"."esgi_user" (firstname, lastname, email, pwd, date_inserted, date_updated, status, role, is_verified) VALUES ('Jean', 'Dupond', 'jeandupond@gmail.com', '$2y$10$mLKjj7saZwKJ73EiGIAJd.5S5b0ciFsPR4mplK469x1n77VjIei4i', '2023-06-13 09:30:38', '2023-06-13 09:30:38', 1, 'guest', 1);
 INSERT INTO "public"."esgi_user" (firstname, lastname, email, pwd, date_inserted, date_updated, status, role, is_verified) VALUES ('Anne', 'Dupond', 'annedupond@gmail.com', '$2y$10$mLKjj7saZwKJ73EiGIAJd.5S5b0ciFsPR4mplK469x1n77VjIei4i', '2023-06-13 09:30:38', '2023-06-13 09:30:38', 1, 'guest', 1);
