@@ -39,7 +39,7 @@ final class Security
                     $_SESSION['token'] = $token;
                     $_SESSION['id'] = $user->getId();
                     $_SESSION['role'] = $user->getRole();
-                    RedirectionService::redirectTo("dashboard");
+                    RedirectionService::redirectTo("profil");
                 }
             }
         }

@@ -31,3 +31,8 @@ dashboard:
   controller: "UserController"
   action: "index"
   permission: ["admin", "guest", "suscriber"]
+
+profil:
+  controller: "UserController"
+  action: "index"
+  permission: ["admin", "guest", "suscriber"]
