@@ -2,7 +2,7 @@
 
 DROP TABLE IF EXISTS "esgi_user" CASCADE;
 DROP TABLE IF EXISTS "esgi_page" CASCADE;
-DROP TABLE IF EXISTS "esgi_page_comment";
+DROP TABLE IF EXISTS "esgi_page_comment" CASCADE;
 DROP TABLE IF EXISTS "esgi_reporting";
 DROP SEQUENCE IF EXISTS esgi_user_id_seq;
 DROP SEQUENCE IF EXISTS esgi_page_id_seq;
