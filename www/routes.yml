@@ -25,5 +25,5 @@ deconnexion:
   action: "logout"
 
 dashboard:
-  controller: "Dashboard"
-  action: "index"
+  controller: "Admin"
+  action: "getUsers"
