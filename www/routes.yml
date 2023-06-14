@@ -30,7 +30,14 @@ deconnexion:
 dashboard:
   controller: "Admin"
   action: "getUsers"
-  permission: ["admin"]
+
+hard-delete-user:
+  controller: "Admin"
+  action: "HardDeleteUser"
+
+soft-delete-user:
+  controller: "Admin"
+  action: "softDeleteUser"
 
 profil:
   controller: "UserController"
