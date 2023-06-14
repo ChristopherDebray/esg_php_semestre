@@ -21,6 +21,7 @@ final class Security
     public function login()
     {
         $userEntity = new User();
+        $test = $userEntity->deleteBy(["firstname"=>"Razr"]);
         $form = new Login();
 
         if($form->isSubmited() && $form->isValid()){
