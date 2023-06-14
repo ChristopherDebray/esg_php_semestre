@@ -26,22 +26,20 @@ final class Security
         if($form->isSubmited() && $form->isValid()){
             $inputedPassword = $_POST["pwd"];
             $user = $userEntity->getOneBy(["email"=>$_POST['email']]);
-            if(!$user->getIsVerified()) {
+            if (!$user) {
+                $form->addError("Identifiant incorrect.");
+            } elseif(!$user->getIsVerified()) {
                 $form->addError("Vous devez vérifier votre compte");
             } else {
-                if (!$user) {
-                    $form->addError("Identifiant incorrect.");
-                } else {
-                    $isPasswordCorrect = $form->isPasswordCorrect($inputedPassword, $user->getPwd());
-                    if ($isPasswordCorrect) {
-                        $token = $this->createToken();
-                        $user->setToken($token);
-                        $user->save();
-                        $_SESSION['token'] = $token;
-                        $_SESSION['id'] = $user->getId();
-                        $_SESSION['role'] = $user->getRole();
-                        RedirectionService::redirectTo("dashboard");
-                    }
+                $isPasswordCorrect = $form->isPasswordCorrect($inputedPassword, $user->getPwd());
+                if ($isPasswordCorrect) {
+                    $token = $this->createToken();
+                    $user->setToken($token);
+                    $user->save();
+                    $_SESSION['token'] = $token;
+                    $_SESSION['id'] = $user->getId();
+                    $_SESSION['role'] = $user->getRole();
+                    RedirectionService::redirectTo("dashboard");
                 }
             }
         }
