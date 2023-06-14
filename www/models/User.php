@@ -14,10 +14,15 @@ class User extends ORM {
     protected $status = 0;
     protected $role;
     protected $token;
+    protected $is_verified = 0;
 
     const ROLE_ADMIN     = "admin";
     const ROLE_SUSCRIBER = "suscriber";
     const ROLE_GUEST     = "guest";
+
+    const STATUS_INACTIVE = 0;
+    const STATUS_ACTIVE = 1;
+    const STATUS_BANNED = 2;
 
     public function __construct()
     {
@@ -199,10 +204,26 @@ class User extends ORM {
     }
 
     /**
-     * @param string $status
+     * @param string $token
      */
     public function setToken(string $token): void
     {
         $this->token = $token;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIsVerified(): int
+    {
+        return $this->is_verified;
+    }
+
+    /**
+     * @param int $is_verified
+     */
+    public function setIsVerified(int $is_verified): void
+    {
+        $this->is_verified = $is_verified;
     }
 }

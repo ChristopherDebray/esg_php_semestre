@@ -18,6 +18,7 @@ final class Router
     private function __construct($uri)
     {
         $routes  = yaml_parse_file("./routes.yml");
+        $uri = explode('?', $uri)[0];
 
         //Si l'uri n'existe pas dans $routes die page 404
         if(empty($routes[$uri])){

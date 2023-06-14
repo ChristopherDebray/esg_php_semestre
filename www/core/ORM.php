@@ -6,7 +6,8 @@ abstract class ORM{
     private $table;
     private $pdo;
 
-    public function __construct($table = null){
+    public function __construct($table = null)
+    {
         $this->table = $table ? $table : self::getTable();
         $connectDb = ConnectDB::getInstance();
         $this->pdo = $connectDb->getPdo();
@@ -25,13 +26,19 @@ abstract class ORM{
         return self::getOneBy("id", $id);
     }
 
-    public static function getOneBy($column, $value, $table = null)
+    public static function getOneBy($columns)
     {
-        $table = $table ? $table : self::getTable();
+        $sqlSearch = [];
+        foreach ($columns as $key=>$value){
+            $searchString = $key."=:".$key;
+            $searchString = $key == array_key_last($columns) ? $searchString : $searchString." AND ";
+            $sqlSearch[] = $searchString;
+        }
+
         $connectDb = ConnectDB::getInstance();
-        $queryPrepared = $connectDb->getPdo()->prepare("SELECT * FROM ".$table.
-                            " WHERE ".$column."=:".$column);
-        $queryPrepared->execute([$column=>$value]);
+        $queryPrepared = $connectDb->getPdo()->prepare("SELECT * FROM ".self::getTable().
+                            " WHERE 1 = 1 AND ".implode("", $sqlSearch));
+        $queryPrepared->execute($columns);
         $queryPrepared->setFetchMode(\PDO::FETCH_CLASS, get_called_class());
         $objet = $queryPrepared->fetch();
         return $objet;

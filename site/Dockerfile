@@ -15,6 +15,8 @@ RUN  docker-php-ext-install gd
 
 RUN pecl install yamL
 
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer 
+
 RUN usermod -u 1000 www-data
 
 RUN a2enmod rewrite
