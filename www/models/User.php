@@ -15,6 +15,7 @@ class User extends ORM {
     protected $role;
     protected $token;
     protected $is_verified = 0;
+    protected $is_deleted = 0;
 
     const ROLE_ADMIN     = "admin";
     const ROLE_SUSCRIBER = "suscriber";
@@ -225,5 +226,21 @@ class User extends ORM {
     public function setIsVerified(int $is_verified): void
     {
         $this->is_verified = $is_verified;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIsDeleted(): int
+    {
+        return $this->is_deleted;
+    }
+
+    /**
+     * @param int $is_deleted
+     */
+    public function setIsDeleted(int $is_deleted): void
+    {
+        $this->is_deleted = $is_deleted;
     }
 }
