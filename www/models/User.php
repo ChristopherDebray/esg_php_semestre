@@ -116,9 +116,9 @@ class User extends ORM {
     }
 
     /**
-     * @return Integer
+     * @return String
      */
-    public function getDateInserted(): int
+    public function getDateInserted(): string
     {
         return $this->date_inserted;
     }
@@ -134,9 +134,9 @@ class User extends ORM {
     }
 
     /**
-     * @return Integer
+     * @return String
      */
-    public function getDateUpdated(): Int
+    public function getDateUpdated(): string
     {
         return $this->date_updated;
     }

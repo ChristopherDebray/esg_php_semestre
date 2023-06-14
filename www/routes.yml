@@ -28,9 +28,9 @@ deconnexion:
   action: "logout"
 
 dashboard:
-  controller: "UserController"
-  action: "index"
-  permission: ["admin", "guest", "suscriber"]
+  controller: "Admin"
+  action: "getUsers"
+  permission: ["admin"]
 
 profil:
   controller: "UserController"
