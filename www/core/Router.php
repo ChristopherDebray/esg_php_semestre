@@ -11,10 +11,12 @@ final class Router
 
     public function getRoute($uri)
     {
+        $uri = explode('?', $uri)[0];
       $routes  = yaml_parse_file("./routes.yml");
 
       //Si l'uri n'existe pas dans $routes die page 404
       if(empty($routes[$uri])){
+            die($uri);
           die("Page 404 : Not found");
       }
       //Sinon si l'uri ne possède pas de controller ni d'action die erreur fichier routes.yml

@@ -18,14 +18,12 @@ final class Security
 
     public function login()
     {
-        $this->mailerService->sendEmail('test@outlook.fr', 'Confirmation de compte');
-
         $userEntity = new User();
         $form = new Login();
 
         if($form->isSubmited() && $form->isValid()){
             $inputedPassword = $_POST["pwd"];
-            $user = $userEntity->getOneBy("email", $_POST['email']);
+            $user = $userEntity->getOneBy(["email"=>$_POST['email']]);
 
             if (!$user) {
                 $form->addError("Identifiant incorrect.");
@@ -53,8 +51,12 @@ final class Security
         if($form->isSubmited() && $form->isValid()){
             $newUser = new User();
             $newUser->setEntityValues($_POST, $newUser);
-            $newUser->setStatus(1);
+            $newUser->setStatus(0);
+            $token = $this->createToken();
+            $newUser->setToken($token);
             $newUser->save();
+            $mailContent = "<a href='http://localhost/confirm-user-inscription?token=".$token."&email=".$newUser->getEmail()."'>Valider mon compte</a>";
+            $this->mailerService->sendEmail($newUser->getEmail(), 'Confirmation de compte', $mailContent);
         }
 
         $view = new View("security/register", "account");
@@ -66,6 +68,19 @@ final class Security
     {
         session_destroy();
         die("logout");
+    }
+
+    public function confirmUser()
+    {
+        $user = new User();
+        $user = $user::getOneBy(['token' => $_GET['token'], 'id'=>2]);
+        $user->setStatus(User::STATUS_ACTIVE);
+        $user::save();
+        echo "<pre>";
+        var_dump($user);
+        echo "</pre>";
+        $_GET['token'];
+        $_GET['email'];
     }
 
     private function createToken() {

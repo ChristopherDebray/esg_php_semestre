@@ -25,13 +25,24 @@ abstract class ORM{
         return self::getOneBy("id", $id);
     }
 
-    public static function getOneBy($column, $value, $table = null)
+    public static function getOneBy($columns)
     {
-        $table = $table ? $table : self::getTable();
+        $table = self::getTable();
+
+        $sqlSearch = [];
+        foreach ($columns as $key=>$value){
+            $searchString = $key."=:".$key;
+            $searchString = $key == array_key_last($columns) ? $searchString : $searchString." AND ";
+            $sqlSearch[] = $searchString;
+        }
+
         $connectDb = ConnectDB::getInstance();
+        var_dump($columns);
+        echo "SELECT * FROM ".$table.
+        " WHERE 1 = 1 AND ".implode("", $sqlSearch);
         $queryPrepared = $connectDb->getPdo()->prepare("SELECT * FROM ".$table.
-                            " WHERE ".$column."=:".$column);
-        $queryPrepared->execute([$column=>$value]);
+                            " WHERE 1 = 1 AND ".implode("", $sqlSearch));
+        $queryPrepared->execute($columns);
         $queryPrepared->setFetchMode(\PDO::FETCH_CLASS, get_called_class());
         $objet = $queryPrepared->fetch();
         return $objet;
@@ -58,6 +69,11 @@ abstract class ORM{
             unset($columns["id"]);
             $queryPrepared = $this->pdo->prepare("INSERT INTO ".$this->table." ( ".implode(", ", array_keys($columns))." ) ".
                 " VALUES (:".implode(",:", array_keys($columns)).")");
+            echo "<pre>";
+            var_dump("INSERT INTO ".$this->table." ( ".implode(", ", array_keys($columns))." ) ");
+            var_dump($columns);
+            echo "</pre>";
+            die();
         } else {
             unset($columns["id"]);
             $sqlUpdate = [];

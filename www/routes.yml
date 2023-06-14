@@ -20,6 +20,10 @@ login:
   controller: "Security"
   action: "login"
 
+confirm-user-inscription:
+  controller: "Security"
+  action: "confirmUser"
+
 deconnexion:
   controller: "Security"
   action: "logout"

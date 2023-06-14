@@ -16,12 +16,12 @@ class MailerService
     $this->mailer->setFrom('christopherdebray@outlook.fr', 'Christopher Debray');
   }
 
-  public function sendEmail(string $target, string $subject)
+  public function sendEmail(string $target, string $subject, string $content)
   {
     try {
       $this->mailer->addAddress($target, null);
       $this->mailer->Subject = $subject;
-      $this->mailer->Body = 'There is a great disturbance in the Force.';
+      $this->mailer->Body = $content;
       $this->mailer->send();
     } catch (Exception $e) {
       echo $e->errorMessage();

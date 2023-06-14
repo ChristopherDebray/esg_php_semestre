@@ -19,6 +19,11 @@ class User extends ORM {
     const ROLE_SUSCRIBER = "suscriber";
     const ROLE_GUEST     = "guest";
 
+    const STATUS_INACTIVE = 0;
+    const STATUS_UNVERIFIED = 1;
+    const STATUS_ACTIVE = 2;
+    const STATUS_BANNED = 3;
+
     public function __construct()
     {
         parent::__construct();

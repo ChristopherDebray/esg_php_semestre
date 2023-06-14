@@ -11,7 +11,10 @@ class Security{
     {
         $userEntity = new User();
         if(!empty($_SESSION['id'])) {
-            $user = $userEntity->getOneBy("id", $_SESSION['id']);
+            $user = $userEntity::getOneBy(["id"=>$_SESSION['id']]);
+            if (!self::isUserActive($user)) {
+                die('Vous devez vérifier votre compte');
+            }
             return $user->getToken() === $_SESSION['token'];
         }
         return false;
@@ -24,5 +27,10 @@ class Security{
         }
 
         return in_array($_SESSION['role'], $roles);
+    }
+
+    public static function isUserActive(User $user): bool
+    {
+        return $user->getStatus() == User::STATUS_ACTIVE;
     }
 }
