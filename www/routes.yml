@@ -11,7 +11,6 @@ se-connecter:
   controller: "Security"
   action: "login"
 
-
 s-inscrire:
   controller: "Security"
   action: "register"
@@ -22,12 +21,13 @@ login:
 
 confirm-user-inscription:
   controller: "Security"
-  action: "confirmUser"
+  action: "confirmUserEmail"
 
 deconnexion:
   controller: "Security"
   action: "logout"
 
 dashboard:
-  controller: "Dashboard"
+  controller: "UserController"
   action: "index"
+  permission: ["admin", "guest", "suscriber"]

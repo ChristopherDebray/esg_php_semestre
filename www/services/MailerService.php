@@ -8,7 +8,8 @@ class MailerService
 {
   private PHPMailer $mailer;
 
-  public function __construct() {
+  public function __construct()
+  {
     $this->mailer = new PHPMailer();
     $this->mailer->isSMTP();
     $this->mailer->Host = 'mailhog';
