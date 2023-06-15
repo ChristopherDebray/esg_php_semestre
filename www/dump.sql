@@ -41,8 +41,8 @@ CREATE TABLE "public"."esgi_page" (
     "slug" character varying(60) NOT NULL,
     "date_inserted" timestamp NOT NULL,
     "date_updated" timestamp NOT NULL,
-    "config" jsonb NOT NULL,
-    "content" jsonb NOT NULL,
+    "config" TEXT NOT NULL,
+    "content" TEXT NOT NULL,
     "theme" integer NOT NULL,
     "status" integer NOT NULL,
     CONSTRAINT "esgi_page_pkey" PRIMARY KEY ("id")

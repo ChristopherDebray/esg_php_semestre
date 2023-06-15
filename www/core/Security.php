@@ -33,4 +33,9 @@ class Security{
     {
         return $user->getStatus() == User::STATUS_ACTIVE && $user->getIsVerified() == 1;
     }
+
+    public static function removeStringScriptTag(string $string): string
+    {
+        return preg_replace('#<script(.*?)>(.*?)</script>#is', '', $string);
+    }
 }

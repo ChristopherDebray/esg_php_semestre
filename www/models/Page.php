@@ -1,6 +1,7 @@
 <?php
 namespace App\models;
 use App\core\ORM;
+use App\core\Security;
 
 class Page extends ORM {
     protected $id = -1;
@@ -97,7 +98,7 @@ class Page extends ORM {
      */
     public function setContent(mixed $content): void
     {
-        $this->content = htmlspecialchars(trim($content));
+        $this->content = Security::removeStringScriptTag(trim($content));
     }
 
     /**
@@ -113,7 +114,7 @@ class Page extends ORM {
      */
     public function setConfig(mixed $config): void
     {
-        $this->config = htmlspecialchars(trim($config));
+        $this->config = Security::removeStringScriptTag(trim($config));
     }
 
     /**
@@ -180,5 +181,15 @@ class Page extends ORM {
     public function setStatus(int $status): void
     {
         $this->status = $status;
+    }
+
+    public function getContentAsArray(): array
+    {
+        return get_object_vars(json_decode($this->content));
+    }
+
+    public function getConfigAsArray(): array
+    {
+        return get_object_vars(json_decode($this->content));
     }
 }

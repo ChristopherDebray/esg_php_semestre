@@ -1,6 +1,7 @@
 <?php
 
 namespace App\core;
+use App\core\Logger;
 
 class Validator
 {

@@ -39,7 +39,12 @@
                         <?= (!empty($attr['required']))?"required='required'":"";?>
                     >
                 <?php else: ?>
-                    <textarea id="<?= $attr['id'] ?>" name="<?= $name ;?>">Hello, World!</textarea>
+                    <textarea 
+                        id="<?= $attr['id'] ?>"
+                        name="<?= $name ;?>"
+                        value="<?= $options['value'] ?>"
+                        placeholder="<?= $attr['placeholder']??'';?>"
+                    ></textarea>
                 <?php endif; ?>
             <?php else: ?>
                 <?php if($attr['type'] === "radio"): ?>

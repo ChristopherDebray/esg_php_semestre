@@ -43,3 +43,8 @@ profil:
   controller: "UserController"
   action: "index"
   permission: ["admin", "guest", "suscriber"]
+
+create-page:
+  controller: "PageController"
+  action: "create"
+  permission: ["admin", "guest", "suscriber"]
