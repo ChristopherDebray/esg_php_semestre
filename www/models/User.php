@@ -1,6 +1,7 @@
 <?php
 namespace App\models;
 use App\core\ORM;
+use App\services\StringFormatterService;
 
 class User extends ORM {
 
