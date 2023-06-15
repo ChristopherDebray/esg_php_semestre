@@ -65,7 +65,7 @@ class Page extends ORM {
      */
     public function setTitle(string $title): void
     {
-        $this->title = trim($title);
+        $this->title = htmlspecialchars(trim($title));
     }
 
     /**
@@ -81,7 +81,7 @@ class Page extends ORM {
      */
     public function setSlug(string $slug): void
     {
-        $this->slug = strtolower(trim($slug));
+        $this->slug = htmlspecialchars(strtolower(trim($slug)));
     }
 
     /**
@@ -97,7 +97,7 @@ class Page extends ORM {
      */
     public function setContent(mixed $content): void
     {
-        $this->content = trim($content);
+        $this->content = htmlspecialchars(trim($content));
     }
 
     /**
@@ -113,7 +113,7 @@ class Page extends ORM {
      */
     public function setConfig(mixed $config): void
     {
-        $this->config = trim($config);
+        $this->config = htmlspecialchars(trim($config));
     }
 
     /**
