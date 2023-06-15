@@ -33,4 +33,12 @@ class Security{
     {
         return $user->getStatus() == User::STATUS_ACTIVE && $user->getIsVerified() == 1;
     }
+
+    public static function createToken(): string
+    {
+        $token = md5(uniqid()."jq2à,?".time());
+        $token = substr($token, 0, rand(10,20));
+        $token = str_shuffle($token);
+        return $token;
+    }
 }

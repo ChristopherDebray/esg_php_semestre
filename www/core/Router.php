@@ -64,6 +64,16 @@ final class Router
     {
         $slug = $this->currentSlug();
 
+        //Si cms non installé, on ne laisse pas l'accès hors de l'installation
+        if(!INSTALLED && self::$routes[$slug]["controller"] !== 'Deploy'){
+            header('Location: /'.$this->getSlug('Deploy', 'deployDb'));
+        }
+
+        //Si le cms est installé, on autorise pas l'accès à l'installation
+        if(INSTALLED && isset(self::$routes[$slug]) && self::$routes[$slug]["controller"] == 'Deploy'){
+            header('Location: /');
+        }
+
         //Si l'uri n'existe pas dans $routes die page 404
         if(!$this->isSlugExist($slug)) {
             die("Page 404 : Not found / ERROR #1");
@@ -82,7 +92,7 @@ final class Router
         }
 
         if ($this->getPermission() && !Security::hasRole($this->getPermission())) {
-            header('Location: '.Router::getSlug('Security', 'login'));
+            header('Location: /'.$this->getSlug('Security', 'login'));
         }
 
         /** @TODO add the singleton principle to the controller call and if possible to the action */
@@ -157,7 +167,7 @@ final class Router
     public function getSlug($controller, $action): string
     {
         foreach (self::$routes as $slug => $route) {
-            if (!empty(self::$route["controller"]) && !empty(self::$route["action"]) && ucfirst(self::$route["controller"]) == ucfirst($controller) && self::$route["action"] == $action)
+            if (!empty($route["controller"]) && !empty($route["action"]) && ucfirst($route["controller"]) == ucfirst($controller) && $route["action"] == $action)
                 return $slug;
         }
 
