@@ -36,20 +36,6 @@ class Login extends Validator {
                     "id"=>"input-pwd",
                     "class"=>null
                 ],
-                "wysiwygTest"=>[
-                    "type"=>"wysiwyg",
-                    "placeholder"=>"Votre mot de passe",
-                    "required"=>true,
-                    "id"=>"input-wysiwyg",
-                    "class"=>null
-                ],
-                "wysiwygTest2"=>[
-                    "type"=>"wysiwyg",
-                    "placeholder"=>"Votre mot de passe",
-                    "required"=>true,
-                    "id"=>"input-wysiwyg-2",
-                    "class"=>null
-                ]
             ]
         ];
 

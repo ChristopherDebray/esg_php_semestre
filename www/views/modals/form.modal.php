@@ -3,7 +3,7 @@
     <?php foreach ($config["inputs"] as $name=>$attr):?>
         <?php if($attr['type'] === 'wysiwyg'): ?>
         tinymce.init({
-            selector: '#<?= $attr['id'] ?>',  // change this value according to your HTML
+            selector: '#<?= $attr['id'] ?>',
             plugins: 'typography advlist autolink lists link image charmap print preview anchor image media',
             toolbar: 'undo redo spellcheckdialog  | blocks fontfamily fontsizeinput | bold italic underline forecolor backcolor | link image media | align lineheight checklist bullist numlist | indent outdent | removeformat typography',
             // language: 'fr_FR',
