@@ -39,6 +39,10 @@ soft-delete-user:
   controller: "Admin"
   action: "softDeleteUser"
 
+update-user:
+  controller: "Admin"
+  action: "updateUser"
+
 profil:
   controller: "UserController"
   action: "index"
