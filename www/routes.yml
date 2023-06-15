@@ -47,4 +47,4 @@ profil:
 create-page:
   controller: "PageController"
   action: "create"
-  permission: ["admin", "guest", "suscriber"]
+  permission: ["admin"]

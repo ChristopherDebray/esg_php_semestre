@@ -13,10 +13,8 @@ final class PageController{
 
     if($form->isSubmited() && $form->isValid()){
       $data = $form->getFormattedData($_POST);
-      // echo "<pre>";
-      // var_dump(json_encode($data['content']));
-      // echo "</pre>";
       $page = new Page();
+      $page->setUser($_SESSION['id']);
       $page->setTitle($data['title']);
       $page->setSlug($data['title']);
       $page->setContent(json_encode($data['content']));
