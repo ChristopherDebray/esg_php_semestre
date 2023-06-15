@@ -11,7 +11,7 @@ final class ConnectDB
         try{
             $this->pdo = new \PDO(DB_DRIVER.":host=".DB_HOST.";dbname=".DB_NAME.";port=".DB_PORT, DB_USER, DB_PWD);
         }catch (\Exception $e){
-            die("Erreur SQL : ".$e->getMessage());
+            return false;
         }
     }
 
@@ -21,7 +21,7 @@ final class ConnectDB
     }
 
     public static function getInstance()
-    {  
+    {
         if(is_null(self::$instance))
         {
             self::$instance = new self();
