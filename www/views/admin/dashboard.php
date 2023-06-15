@@ -21,7 +21,7 @@
             <td><?= $user->getDateUpdated() ?></td>
             <td><?= $user->getStatus() ?></td>
             <td><?= $user->getRole() ?></td>
-            <td><a class="button --warning">Modifier</a></td>
+            <td><a class="button --warning" href="update-user?id=<?= $user->getId() ?>">Modifier</a></td>
             <td><a class="button --danger" href="hard-delete-user?id=<?= $user->getId() ?>">Supprimer</a></td>
         </tr>
     <?php endforeach; ?>

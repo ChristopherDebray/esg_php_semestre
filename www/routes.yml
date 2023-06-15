@@ -33,11 +33,15 @@ dashboard:
 
 hard-delete-user:
   controller: "Admin"
-  action: "HardDeleteUser"
+  action: "hardDeleteUser"
 
 soft-delete-user:
   controller: "Admin"
   action: "softDeleteUser"
+
+update-user:
+  controller: "Admin"
+  action: "updateUser"
 
 profil:
   controller: "UserController"
