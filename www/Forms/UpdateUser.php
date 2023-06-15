@@ -2,19 +2,20 @@
 namespace App\Forms;
 
 use App\core\Validator;
+use App\models\User;
 
 class UpdateUser extends Validator {
     public $config = [];
     public $method = "POST";
     public $statusOptions = [
-        ["label"=>"STATUS_INACTIVE", "value"=>0],
-        ["label"=>"STATUS_ACTIVE", "value"=>1],
-        ["label"=>"STATUS_BANNED", "value"=>2]
+        ["label"=>"STATUS_INACTIVE", "value"=>User::STATUS_INACTIVE],
+        ["label"=>"STATUS_ACTIVE", "value"=>User::STATUS_ACTIVE],
+        ["label"=>"STATUS_BANNED", "value"=>User::STATUS_BANNED]
     ];
     public $roleOptions = [
-        ["label"=>"admin", "value"=>"admin"],
-        ["label"=>"suscriber", "value"=>"suscriber"],
-        ["label"=>"guest", "value"=>"guest"]
+        ["label"=>"admin", "value"=>User::ROLE_ADMIN],
+        ["label"=>"suscriber", "value"=>User::ROLE_SUSCRIBER],
+        ["label"=>"guest", "value"=>User::ROLE_GUEST]
     ];
     public $user = null;
 
