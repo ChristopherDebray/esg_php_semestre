@@ -1,6 +1,7 @@
 <?php
     namespace App\controllers;
     use App\core\View;
+    use App\Forms\UpdateUser;
     use App\models\User;
 
 final class Admin {
@@ -44,5 +45,24 @@ final class Admin {
         {
             die("Pas d'ID retourné");
         }
+    }
+
+    public function updateUser()
+    {
+        $id = $_GET['id'];
+        if (!empty($id)) {
+            $user = new User();
+            $user = $user->getOneBy(['id' => $id]);
+            $updateUserForm = new UpdateUser($user);
+            $view = new View("admin/updateUser");
+            $view->assign('form', $updateUserForm->getConfig());
+            $view->assign('formErrors', $updateUserForm->listOfErrors);
+        }
+        else
+        {
+            die("Il manque l'id dans l'urlParam");
+        }
+        
+
     }
 }
