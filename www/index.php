@@ -16,13 +16,9 @@ spl_autoload_register(function ($class)
     }
 });
 
-
-$uri = strtolower(trim($_SERVER["REQUEST_URI"], "/"));
-$uri = empty($uri)?"default":$uri;
-
-
-if(!file_exists("routes.yml")){
-    die("Le fichier routes.yml n'existe pas");
+if(file_exists("routes.yml"))
+{
+    $router = Router::getInstance()->getRoute();
+} else {
+    die("Page 404 : Not found / ERROR #4");
 }
-
-$router = Router::getInstance($uri);
