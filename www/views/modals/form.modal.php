@@ -23,6 +23,7 @@
                     name="<?= $name ;?>"
                     class="<?= $attr['class']??'form-control';?>"
                     id="<?= $attr['id']??'';?>"
+                    value="<?= $attr['value']??'';?>"
                     <?= (!empty($attr['required']))?"required='required'":"";?>
                 >
             <?php else: ?>
