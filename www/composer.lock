@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "33cad13092641f81b77ea1ff6e1ca5db",
+    "content-hash": "fb4fb431c5ca1d917b91a8d53a5f8409",
     "packages": [
         {
             "name": "phpmailer/phpmailer",
@@ -85,6 +85,65 @@
                 }
             ],
             "time": "2023-03-06T14:43:22+00:00"
+        },
+        {
+            "name": "tinymce/tinymce",
+            "version": "6.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tinymce/tinymce-dist.git",
+                "reference": "31251ab0bdc693efb4d510a2d0edb07d47ca355c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/31251ab0bdc693efb4d510a2d0edb07d47ca355c",
+                "reference": "31251ab0bdc693efb4d510a2d0edb07d47ca355c",
+                "shasum": ""
+            },
+            "type": "component",
+            "extra": {
+                "component": {
+                    "scripts": [
+                        "tinymce.js",
+                        "plugins/*/plugin.js",
+                        "themes/*/theme.js",
+                        "models/*/model.js",
+                        "icons/*/icons.js"
+                    ],
+                    "files": [
+                        "tinymce.min.js",
+                        "plugins/*/plugin.min.js",
+                        "themes/*/theme.min.js",
+                        "models/*/model.min.js",
+                        "skins/**",
+                        "icons/*/icons.min.js"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT-only"
+            ],
+            "description": "Web based JavaScript HTML WYSIWYG editor control.",
+            "homepage": "https://www.tiny.cloud/",
+            "keywords": [
+                "contenteditable",
+                "editing",
+                "html",
+                "javascript",
+                "rich editor",
+                "rich text",
+                "rich text editor",
+                "richtext",
+                "rte",
+                "text",
+                "tinymce",
+                "wysiwyg"
+            ],
+            "support": {
+                "source": "https://github.com/tinymce/tinymce-dist/tree/6.5.0"
+            },
+            "time": "2023-06-13T00:10:53+00:00"
         }
     ],
     "packages-dev": [],

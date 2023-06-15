@@ -81,7 +81,7 @@ class PageComment extends ORM {
      */
     public function setContent(string $content): void
     {
-        $this->content = trim($content);
+        $this->content = htmlspecialchars(trim($content));
     }
 
     /**
