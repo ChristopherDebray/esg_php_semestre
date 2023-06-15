@@ -64,7 +64,7 @@ class User extends ORM {
      */
     public function setFirstname(string $firstname): void
     {
-        $this->firstname = ucwords(strtolower(trim($firstname)));
+        $this->firstname = htmlspecialchars(ucwords(strtolower(trim($firstname))));
     }
 
     /**
@@ -80,7 +80,7 @@ class User extends ORM {
      */
     public function setLastname(string $lastname): void
     {
-        $this->lastname = strtoupper(trim($lastname));
+        $this->lastname = htmlspecialchars(strtoupper(trim($lastname)));
     }
 
     /**
@@ -96,7 +96,7 @@ class User extends ORM {
      */
     public function setEmail(string $email): void
     {
-        $this->email = strtolower(trim($email));
+        $this->email = htmlspecialchars(strtolower(trim($email)));
     }
 
     /**

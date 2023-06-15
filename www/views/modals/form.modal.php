@@ -1,4 +1,16 @@
-
+<script src="../vendor/tinymce/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+<script defer>
+    <?php foreach ($config["inputs"] as $name=>$attr):?>
+        <?php if($attr['type'] === 'wysiwyg'): ?>
+        tinymce.init({
+            selector: '#<?= $attr['id'] ?>',  // change this value according to your HTML
+            plugins: 'typography advlist autolink lists link image charmap print preview anchor image media',
+            toolbar: 'undo redo spellcheckdialog  | blocks fontfamily fontsizeinput | bold italic underline forecolor backcolor | link image media | align lineheight checklist bullist numlist | indent outdent | removeformat typography',
+            // language: 'fr_FR',
+        });
+        <?php endif; ?>
+    <?php endforeach; ?>
+</script>
 <section class="container">
     <?php if($errors): ?>
         <ul>
@@ -17,14 +29,18 @@
         <div class="form-group">
         <?php foreach ($config["inputs"] as $name=>$attr):?>
             <?php if(!in_array($attr['type'], ["checkbox", "radio", "select"])): ?>
-                <input
-                    type="<?= $attr['type']??'text';?>"
-                    placeholder="<?= $attr['placeholder']??'';?>"
-                    name="<?= $name ;?>"
-                    class="<?= $attr['class']??'form-control';?>"
-                    id="<?= $attr['id']??'';?>"
-                    <?= (!empty($attr['required']))?"required='required'":"";?>
-                >
+                <?php if($attr['type'] !== "wysiwyg"): ?>
+                    <input
+                        type="<?= $attr['type']??'text';?>"
+                        placeholder="<?= $attr['placeholder']??'';?>"
+                        name="<?= $name ;?>"
+                        class="<?= $attr['class']??'form-control';?>"
+                        id="<?= $attr['id']??'';?>"
+                        <?= (!empty($attr['required']))?"required='required'":"";?>
+                    >
+                <?php else: ?>
+                    <textarea id="<?= $attr['id'] ?>" name="<?= $name ;?>">Hello, World!</textarea>
+                <?php endif; ?>
             <?php else: ?>
                 <?php if($attr['type'] === "radio"): ?>
                     <?php foreach ($attr["options"] as $name=>$options):?>
