@@ -18,7 +18,8 @@ class Register extends Validator {
                 "class"=>null,
                 "id"=>"form-register",
                 "submit"=>"S'inscrire",
-                "cancel"=>"Annuler"
+                "cancel"=>"Annuler",
+                "redirectIfCancel"=>"#"
             ],
             "inputs"=>[
                 "firstname"=>[
