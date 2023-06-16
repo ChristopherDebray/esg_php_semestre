@@ -7,11 +7,8 @@
     <link rel="stylesheet" href="../dist/main.css">
 </head>
 <body>
-    <h1>FRONT</h1>
-
-
+    <h1>Back</h1>
     <!-- la vue  -->
     <?php include $this->view; ?>
-
 </body>
 </html>
