@@ -4,5 +4,7 @@
 <?php include 'components/customcard.php' ?>
 <?php include 'components/quote.php' ?>
 
+<?php include 'components/post.php' ?>
+
 <?php include 'layout/footer.php' ?>
 
