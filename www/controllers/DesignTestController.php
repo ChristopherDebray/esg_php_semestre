@@ -45,7 +45,12 @@ final class DesignTestController {
         "imgAlt"=>"Description of the picture",
         "title"=>"Heading",
         "text"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."],
+    ];
 
+    public $dataArticle = [
+        "title"=>"Heading",
+        "text"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "backgroundColor"=>"grey"
     ];
 
     public function displayWireframe1()
@@ -66,6 +71,13 @@ final class DesignTestController {
         $view->assign('dataFooter', $this->dataFooter);
         $view->assign('dataBanner', $this->dataBanner);
         $view->assign('dataPost', $this->dataPost);
-        
+    }
+
+    public function displayWireframe3()
+    {
+        $view = new View('wireframe3', 'front');
+        $view->assign('dataFooter', $this->dataFooter);
+        $view->assign('dataBanner', $this->dataBanner);
+        $view->assign('dataArticle', $this->dataArticle);
     }
 }
