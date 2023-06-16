@@ -53,6 +53,11 @@ final class DesignTestController {
         "backgroundColor"=>"grey"
     ];
 
+    public $dataVideo = [
+        "title"=>"Heading",
+        "videoSrc"=>"https://www.youtube.com/embed/-7mOz1bINz0"
+    ];
+
     public function displayWireframe1()
     {
         $view = new View('wireframe1', 'front');
@@ -79,5 +84,6 @@ final class DesignTestController {
         $view->assign('dataFooter', $this->dataFooter);
         $view->assign('dataBanner', $this->dataBanner);
         $view->assign('dataArticle', $this->dataArticle);
+        $view->assign('dataVideo', $this->dataVideo);
     }
 }
