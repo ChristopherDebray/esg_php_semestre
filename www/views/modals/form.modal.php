@@ -1,15 +1,21 @@
-<script src="../vendor/tinymce/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
-<script defer>
-    <?php foreach ($config["inputs"] as $name=>$attr):?>
-        <?php if($attr['type'] === 'wysiwyg'): ?>
-        tinymce.init({
-            selector: '#<?= $attr['id'] ?>',
-            plugins: 'typography advlist autolink lists link image charmap print preview anchor image media',
-            toolbar: 'undo redo spellcheckdialog  | blocks fontfamily fontsizeinput | bold italic underline forecolor backcolor | link image media | align lineheight checklist bullist numlist | indent outdent | removeformat typography',
-            // language: 'fr_FR',
-        });
-        <?php endif; ?>
-    <?php endforeach; ?>
+<script src="../vendor/tinymce/tinymce/tinymce.js" referrerpolicy="origin"></script>
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+        <?php foreach ($config["inputs"] as $name=>$attr):?>
+            <?php if($attr['type'] === 'wysiwyg'): ?>
+            tinymce.init({
+                selector: '#<?= $attr['id'] ?>',
+                mode:"specific_textareas",
+                plugins: 'typography advlist autolink lists link image charmap print preview anchor image media wordcount',
+                toolbar: 'undo redo spellcheckdialog  | blocks fontfamily fontsizeinput | bold italic underline forecolor backcolor | link image media | align lineheight checklist bullist numlist | indent outdent | removeformat typography',
+                // language: 'fr_FR',
+
+            });
+
+            tinymce.get("<?= $attr['id'] ?>").setContent('<strong>miaou</strong>');
+            <?php endif; ?>
+        <?php endforeach; ?>
+    });
 </script>
 <section class="container">
     <?php if($errors): ?>
@@ -42,7 +48,11 @@
                             <?= (!empty($attr['required']))?"required='required'":"";?>
                         >
                     <?php else: ?>
-                        <textarea id="<?= $attr['id'] ?>" name="<?= $name ;?>">Hello, World!</textarea>
+                        <textarea 
+                            id="<?= $attr['id'] ?>"
+                            name="<?= $name ;?>"
+                            placeholder="<?= $attr['placeholder']??'';?>"
+                        ><?= $attr['value'] ?></textarea>
                     <?php endif; ?>
                 <?php else: ?>
                     <?php if($attr['type'] === "radio"): ?>

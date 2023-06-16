@@ -48,6 +48,15 @@ profil:
   action: "index"
   permission: ["admin", "guest", "suscriber"]
 
+create-page:
+  controller: "PageController"
+  action: "create"
+  permission: ["admin"]
+
+update-page:
+  controller: "PageController"
+  action: "update"
+  permission: ["admin"]
 
 # route for deployement CMS
 
