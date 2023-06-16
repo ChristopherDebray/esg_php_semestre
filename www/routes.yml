@@ -50,9 +50,13 @@ profil:
   action: "index"
   permission: ["admin", "guest", "suscriber"]
 
-design:
+wireframe1:
   controller: "DesignTestController"
   action: "displayWireframe1"
+
+wireframe2:
+  controller: "DesignTestController"
+  action: "displayWireframe2"
 
 create-page:
   controller: "PageController"

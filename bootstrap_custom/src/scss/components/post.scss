@@ -1,0 +1,25 @@
+.container--post{
+    .row:nth-child(odd){
+        .img-container{
+            order: 2;
+        }
+    }
+}
+
+.post{
+    .img-container{
+        display: flex;
+        justify-content: center;
+        padding: 30px;
+        img{
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+        }
+    }
+    .text-container{
+        padding-left: 30px;
+        padding-right: 30px;
+        overflow: hidden;
+    }
+}
