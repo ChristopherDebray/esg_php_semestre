@@ -1,5 +1,5 @@
-<div class="col-12">
+<div class="footer col-12" style="background-color: <?= $dataFooter["footerColor"] ?>">
     <p>
-        <?= $companyTitle ?>©
+        <?= $dataFooter["companyTitle"] ?>©
     </p>
 </div>

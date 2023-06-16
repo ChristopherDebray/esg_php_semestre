@@ -5,11 +5,13 @@
     <title>Mon site MVC</title>
     <meta name="description" content="mon super site en MVC from scratch">
     <link rel="stylesheet" href="../dist/main.css">
+    <script src="../dist/js/slideshow.js" defer></script>
 </head>
 <body>
     <h1>Front</h1>
-    <!-- la vue  -->
-    <?php include $this->view; ?>
-
+    <div class="container">
+        <!-- la vue  -->
+        <?php include $this->view; ?>
+    </div>
 </body>
 </html>
