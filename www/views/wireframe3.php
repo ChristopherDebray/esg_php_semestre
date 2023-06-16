@@ -2,6 +2,7 @@
 
 <?php include 'components/video.php' ?>
 <?php include 'components/article.php' ?>
+<?php include 'components/wysiwyg.php' ?>
 
 <?php include 'layout/footer.php' ?>
 

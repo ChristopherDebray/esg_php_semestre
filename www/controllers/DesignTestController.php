@@ -58,6 +58,8 @@ final class DesignTestController {
         "videoSrc"=>"https://www.youtube.com/embed/-7mOz1bINz0"
     ];
 
+    public $dataWysiwyg = "<h1> What you see What you get!</h1>";
+
     public function displayWireframe1()
     {
         $view = new View('wireframe1', 'front');
@@ -85,5 +87,6 @@ final class DesignTestController {
         $view->assign('dataBanner', $this->dataBanner);
         $view->assign('dataArticle', $this->dataArticle);
         $view->assign('dataVideo', $this->dataVideo);
+        $view->assign('dataWysiwyg', $this->dataWysiwyg);
     }
 }
