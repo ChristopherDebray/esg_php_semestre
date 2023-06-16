@@ -127,7 +127,7 @@ class Page extends Validator {
         ],
 
         "content-cards-one-imgSrc"=>[
-          "type"=>"text",
+          "type"=>"url",
           "placeholder"=>"Entrer l'url de l'image #cards-1",
           "required"=>true,
           "id"=>"input-content-cards-one-imgSrc",
@@ -168,7 +168,7 @@ class Page extends Validator {
         ],
 
         "content-cards-two-imgSrc"=>[
-          "type"=>"text",
+          "type"=>"url",
           "placeholder"=>"Entrer l'url de l'image #cards-2",
           "required"=>true,
           "id"=>"input-content-cards-two-imgSrc",
@@ -209,7 +209,7 @@ class Page extends Validator {
         ],
 
         "content-cards-three-imgSrc"=>[
-          "type"=>"text",
+          "type"=>"url",
           "placeholder"=>"Entrer l'url de l'image #cards-3",
           "required"=>true,
           "id"=>"input-content-cards-three-imgSrc",
@@ -250,7 +250,7 @@ class Page extends Validator {
         ],
 
         "content-quote-quote"=>[
-          "type"=>"url",
+          "type"=>"text",
           "placeholder"=>"Entrer le contenu de votre #quote",
           "required"=>true,
           "id"=>"input-content-quote-quote",
@@ -281,7 +281,7 @@ class Page extends Validator {
         ],
 
         "content-footer-companyTitle"=>[
-          "type"=>"url",
+          "type"=>"text",
           "placeholder"=>"Entrer le contenu de votre #footer-companyTitle",
           "required"=>true,
           "id"=>"input-content-footer-companyTitle",

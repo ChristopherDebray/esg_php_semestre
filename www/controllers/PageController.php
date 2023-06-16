@@ -45,6 +45,11 @@ final class PageController{
     $view->assign('formErrors', $form->listOfErrors);
   }
 
+  public function displayPage(Page $page)
+  {
+    
+  }
+
   private function setPageValues(PageForm $form, Page $page): void
   {
     $data = $form->getFormattedData($_POST);

@@ -3,6 +3,7 @@
 namespace App\core;
 
 use App\core\Security;
+use App\models\Page;
 
 final class Router
 {
@@ -12,6 +13,7 @@ final class Router
     private $controller;
     private $action;
     private $permission;
+    private $actionParameter;
 
     public function setController($controller): void
     {
@@ -28,6 +30,11 @@ final class Router
         $this->permission = $permission;
     }
 
+    public function setActionParameter($actionParameter): void
+    {
+        $this->actionParameter = $actionParameter;
+    }
+
     public function getController(): string
     {
         return $this->controller;
@@ -36,6 +43,11 @@ final class Router
     public function getAction(): string
     {
         return $this->action;
+    }
+
+    public function getActionParameter()
+    {
+        return $this->actionParameter;
     }
 
     public function getPermission(): ?array
@@ -103,7 +115,7 @@ final class Router
             die("Page 404 : Not found / ERROR #7");
         }
 
-        return $controller->{$this->getAction()}();
+        return $controller->{$this->getAction()}($this->getActionParameter());
     }
 
     public function isSlugExist(String $slug): bool
@@ -131,13 +143,18 @@ final class Router
             }
 
             return true;
-        } else {
+        }
 
-            $this->setController("Front");
-            $this->setAction("home");
-            $this->setPermission(null);
+        $this->setController("PageController");
+        $this->setAction("displayPage");
+        $this->setPermission(null);
 
-            die("ERROR : Search in DB <br>");
+        var_dump($slug);
+        $page = new Page();
+        $page = $page::getOneBy(['slug'=>$slug]);
+        if($page) {
+            $this->setActionParameter($page);
+            return true;
         }
 
         return false;
