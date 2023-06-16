@@ -2,6 +2,7 @@
 
 namespace App\core;
 use App\core\Logger;
+use App\core\Security;
 
 class Validator
 {
@@ -14,13 +15,13 @@ class Validator
     public function isValid(): bool
     {
         if( count($this->config["inputs"])+1 != count($this->data) ){
-            die("Tentative de hack");
+            $this->listOfErrors[] = "Tentative de hack";
         }
 
         foreach ($this->config["inputs"] as $name=>$attr)
         {
-            if(!isset($this->data[$name])){
-                die("Tentative de hack");
+            if(!isset($this->data[$name]) || Security::hasScriptTag($this->data[$name])){
+                $this->listOfErrors[] = "Tentative de hack";
             }
 
             if(!empty($attr["min"]) && !self::minLength($this->data[$name], $attr["min"])){

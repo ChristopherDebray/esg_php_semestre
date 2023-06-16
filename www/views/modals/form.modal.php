@@ -6,10 +6,13 @@
             tinymce.init({
                 selector: '#<?= $attr['id'] ?>',
                 mode:"specific_textareas",
-                plugins: 'typography advlist autolink lists link image charmap print preview anchor image media',
+                plugins: 'typography advlist autolink lists link image charmap print preview anchor image media wordcount',
                 toolbar: 'undo redo spellcheckdialog  | blocks fontfamily fontsizeinput | bold italic underline forecolor backcolor | link image media | align lineheight checklist bullist numlist | indent outdent | removeformat typography',
                 // language: 'fr_FR',
+
             });
+
+            tinymce.get("<?= $attr['id'] ?>").setContent('<strong>miaou</strong>');
             <?php endif; ?>
         <?php endforeach; ?>
     });
@@ -39,15 +42,15 @@
                         name="<?= $name ;?>"
                         class="<?= $attr['class']??'form-control';?>"
                         id="<?= $attr['id']??'';?>"
+                        value="<?= $attr['value']??'' ?>"
                         <?= (!empty($attr['required']))?"required='required'":"";?>
                     >
                 <?php else: ?>
                     <textarea 
                         id="<?= $attr['id'] ?>"
                         name="<?= $name ;?>"
-                        value="<?= $options['value'] ?>"
                         placeholder="<?= $attr['placeholder']??'';?>"
-                    ></textarea>
+                    ><?= $attr['value'] ?></textarea>
                 <?php endif; ?>
             <?php else: ?>
                 <?php if($attr['type'] === "radio"): ?>
@@ -86,7 +89,7 @@
                 <?php endif; ?>
             <?php endif; ?>
             <br>
-        <?php endforeach;?>
+        <?php endforeach; ?>
         </div>
 
         <input type="submit" name="submit" class="form-control button button--info" value="<?= $config["config"]["submit"]??"Confirmer";?>">

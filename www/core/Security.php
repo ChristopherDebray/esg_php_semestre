@@ -38,4 +38,9 @@ class Security{
     {
         return preg_replace('#<script(.*?)>(.*?)</script>#is', '', $string);
     }
+
+    public static function hasScriptTag(string $string): string
+    {
+        return strpos($string,'<script>') !== false;
+    }
 }

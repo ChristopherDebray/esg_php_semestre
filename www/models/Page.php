@@ -190,6 +190,6 @@ class Page extends ORM {
 
     public function getConfigAsArray(): array
     {
-        return get_object_vars(json_decode($this->content));
+        return get_object_vars(json_decode($this->config));
     }
 }
