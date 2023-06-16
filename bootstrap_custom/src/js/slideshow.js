@@ -1,4 +1,3 @@
-
 function displaySlide(slideToDisplay) {
   let slides = document.getElementsByClassName('slide');
   let slidesLength = slides.length;
