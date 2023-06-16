@@ -81,7 +81,8 @@ class Page extends Validator {
           "class"=>null,
           "id"=>"form-login",
           "submit"=>"Se connecter",
-          "cancel"=>"Annuler"
+          "cancel"=>"Annuler",
+          "redirectIfCancel"=>"dashboard",
       ],
       "inputs"=>$this->themes[$selectedTheme]
     ];

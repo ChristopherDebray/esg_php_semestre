@@ -23,7 +23,7 @@ final class Router
         $this->action = $action;
     }
 
-    public function setPermission($permission): void
+    public function setPermission(?array $permission): void
     {
         $this->permission = $permission;
     }
@@ -38,7 +38,7 @@ final class Router
         return $this->action;
     }
 
-    public function getPermission(): ?string
+    public function getPermission(): ?array
     {
         return $this->permission;
     }

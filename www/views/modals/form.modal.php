@@ -95,7 +95,7 @@
             </div>
     
             <input type="submit" name="submit" class="form-control button button--info" value="<?= $config["config"]["submit"]??"Confirmer";?>">
-            <a class="form-control button button--danger" href="<?= $config["config"]["redirectIfCancel"] ?>"><?= $config["config"]["cancel"]??"Annuler";?></a>
+            <a class="form-control button button--danger" href="<?= $config["config"]["redirectIfCancel"]??"" ?>"><?= $config["config"]["cancel"]??"Annuler";?></a>
         </form>
     </div>
 </section>
