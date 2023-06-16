@@ -34,7 +34,7 @@ final class Security
             } else {
                 $isPasswordCorrect = $form->isPasswordCorrect($inputedPassword, $user->getPwd());
                 if ($isPasswordCorrect) {
-                    $token = $this->createToken();
+                    $token = CoreSecurity::createToken();
                     $user->setToken($token);
                     $user->save();
                     $_SESSION['token'] = $token;
