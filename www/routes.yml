@@ -58,6 +58,10 @@ wireframe2:
   controller: "DesignTestController"
   action: "displayWireframe2"
 
+wireframe3:
+  controller: "DesignTestController"
+  action: "displayWireframe3"
+
 create-page:
   controller: "PageController"
   action: "create"
