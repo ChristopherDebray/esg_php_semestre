@@ -15,10 +15,12 @@ class Login extends Validator {
             "config"=>[
                 "method"=>$this->method,
                 "action"=>"",
-                "class"=>null,
                 "id"=>"form-login",
                 "submit"=>"Se connecter",
-                "cancel"=>"Annuler"
+                "cancel"=>"Annuler",
+                "redirectIfCancel"=>"#",
+                "title"=>"Se connecter",
+                "class"=>"col-6"
             ],
             "inputs"=>[
                 "email"=>[

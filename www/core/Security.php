@@ -33,4 +33,22 @@ class Security{
     {
         return $user->getStatus() == User::STATUS_ACTIVE && $user->getIsVerified() == 1;
     }
+
+    public static function removeStringScriptTag(string $string): string
+    {
+        return preg_replace('#<script(.*?)>(.*?)</script>#is', '', $string);
+    }
+
+    public static function hasScriptTag(string $string): string
+    {
+        return strpos($string,'<script>') !== false;
+    }
+
+    public static function createToken(): string
+    {
+        $token = md5(uniqid()."jq2à,?".time());
+        $token = substr($token, 0, rand(10,20));
+        $token = str_shuffle($token);
+        return $token;
+    }
 }

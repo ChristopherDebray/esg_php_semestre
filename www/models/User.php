@@ -13,7 +13,7 @@ class User extends ORM {
     protected $date_inserted;
     protected $date_updated;
     protected $status = 0;
-    protected $role;
+    protected $role = self::ROLE_GUEST;
     protected $token;
     protected $is_verified = 0;
     protected $is_deleted = 0;
@@ -29,7 +29,6 @@ class User extends ORM {
     public function __construct()
     {
         parent::__construct();
-        $this->role = self::ROLE_GUEST;
         $this->setDateInserted(time());
         $this->setDateUpdated(time());
     }

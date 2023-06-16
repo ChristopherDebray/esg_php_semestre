@@ -53,3 +53,23 @@ profil:
 design:
   controller: "DesignTestController"
   action: "displayWireframe1"
+
+create-page:
+  controller: "PageController"
+  action: "create"
+  permission: ["admin"]
+
+update-page:
+  controller: "PageController"
+  action: "update"
+  permission: ["admin"]
+
+# route for deployement CMS
+
+deploy:
+  controller: "Deploy"
+  action: "deployDb"
+
+deploy/user:
+  controller: "Deploy"
+  action: "deployUser"

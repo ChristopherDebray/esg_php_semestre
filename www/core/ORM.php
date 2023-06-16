@@ -1,6 +1,8 @@
 <?php
 namespace App\core;
 
+use App\core\Logger;
+
 abstract class ORM{
 
     private $table;
@@ -97,7 +99,7 @@ abstract class ORM{
         $sqlSearch = [];
         foreach ($columns as $key=>$value){
             $searchString = $key."=:".$key;
-            $searchString = " AND ".$searchString;
+            $searchString = "AND ".$searchString;
             $sqlSearch[] = $searchString;
         }
 

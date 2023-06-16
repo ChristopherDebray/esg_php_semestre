@@ -6,6 +6,7 @@ use App\Forms\Register;
 use App\Forms\Login;
 use App\models\User;
 use App\core\ORM;
+use App\core\Security as CoreSecurity;
 use App\services\MailerService;
 use App\services\RedirectionService;
 
@@ -33,7 +34,7 @@ final class Security
             } else {
                 $isPasswordCorrect = $form->isPasswordCorrect($inputedPassword, $user->getPwd());
                 if ($isPasswordCorrect) {
-                    $token = $this->createToken();
+                    $token = CoreSecurity::createToken();
                     $user->setToken($token);
                     $user->save();
                     $_SESSION['token'] = $token;
@@ -55,7 +56,7 @@ final class Security
         if($form->isSubmited() && $form->isValid()){
             $newUser = new User();
             $newUser->setEntityValues($_POST, $newUser);
-            $token = $this->createToken();
+            $token = CoreSecurity::createToken();
             $newUser->setToken($token);
             $newUser->save();
             $mailContent = "<a href=http://localhost/confirm-user-inscription?token=".$token."&email=".$newUser->getEmail().">Valider mon compte</a>";
@@ -83,12 +84,5 @@ final class Security
         $user->setIsVerified(1);
         $user->save();
         RedirectionService::redirectTo('se-connecter');
-    }
-
-    private function createToken() {
-        $token = md5(uniqid()."jq2à,?".time());
-        $token = substr($token, 0, rand(10,20));
-        $token = str_shuffle($token);
-        return $token;
     }
 }

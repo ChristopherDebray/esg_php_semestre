@@ -29,7 +29,7 @@ CREATE TABLE "public"."esgi_user" (
 ALTER TABLE "public"."esgi_user" ADD COLUMN "is_verified" smallint NOT NULL DEFAULT 0;
 ALTER TABLE "public"."esgi_user" ADD COLUMN "is_deleted" smallint NOT NULL DEFAULT 0;
 
-INSERT INTO "public"."esgi_user" (firstname, lastname, email, pwd, date_inserted, date_updated, status, role, is_verified) VALUES ('Jean', 'Dupond', 'jeandupond@gmail.com', '$2y$10$mLKjj7saZwKJ73EiGIAJd.5S5b0ciFsPR4mplK469x1n77VjIei4i', '2023-06-13 09:30:38', '2023-06-13 09:30:38', 1, 'guest', 1);
+INSERT INTO "public"."esgi_user" (firstname, lastname, email, pwd, date_inserted, date_updated, status, role, is_verified) VALUES ('Jean', 'Dupond', 'jeandupond@gmail.com', '$2y$10$mLKjj7saZwKJ73EiGIAJd.5S5b0ciFsPR4mplK469x1n77VjIei4i', '2023-06-13 09:30:38', '2023-06-13 09:30:38', 1, 'admin', 1);
 INSERT INTO "public"."esgi_user" (firstname, lastname, email, pwd, date_inserted, date_updated, status, role, is_verified) VALUES ('Anne', 'Dupond', 'annedupond@gmail.com', '$2y$10$mLKjj7saZwKJ73EiGIAJd.5S5b0ciFsPR4mplK469x1n77VjIei4i', '2023-06-13 09:30:38', '2023-06-13 09:30:38', 1, 'guest', 1);
 INSERT INTO "public"."esgi_user" (firstname, lastname, email, pwd, date_inserted, date_updated, status, role, is_verified) VALUES ('Patrick', 'Verger', 'patrickverger@gmail.com', '$2y$10$mLKjj7saZwKJ73EiGIAJd.5S5b0ciFsPR4mplK469x1n77VjIei4i', '2023-06-13 09:30:38', '2023-06-13 09:30:38', 1, 'guest', 1);
 
@@ -41,8 +41,8 @@ CREATE TABLE "public"."esgi_page" (
     "slug" character varying(60) NOT NULL,
     "date_inserted" timestamp NOT NULL,
     "date_updated" timestamp NOT NULL,
-    "config" jsonb NOT NULL,
-    "content" jsonb NOT NULL,
+    "config" TEXT NOT NULL,
+    "content" TEXT NOT NULL,
     "theme" integer NOT NULL,
     "status" integer NOT NULL,
     CONSTRAINT "esgi_page_pkey" PRIMARY KEY ("id")

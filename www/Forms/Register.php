@@ -15,10 +15,12 @@ class Register extends Validator {
             "config"=>[
                 "method"=>$this->method,
                 "action"=>"",
-                "class"=>null,
                 "id"=>"form-register",
                 "submit"=>"S'inscrire",
-                "cancel"=>"Annuler"
+                "cancel"=>"Annuler",
+                "redirectIfCancel"=>"#",
+                "title"=>"S'inscrire",
+                "class"=>"col-6"
             ],
             "inputs"=>[
                 "firstname"=>[
