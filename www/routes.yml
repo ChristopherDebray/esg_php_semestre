@@ -34,6 +34,7 @@ dashboard:
 hard-delete-user:
   controller: "Admin"
   action: "hardDeleteUser"
+  permission: ["admin"]
 
 soft-delete-user:
   controller: "Admin"
@@ -42,11 +43,16 @@ soft-delete-user:
 update-user:
   controller: "Admin"
   action: "updateUser"
+  permission: ["admin"]
 
 profil:
   controller: "UserController"
   action: "index"
   permission: ["admin", "guest", "suscriber"]
+
+design:
+  controller: "DesignTestController"
+  action: "displayWireframe1"
 
 create-page:
   controller: "PageController"

@@ -1,0 +1,21 @@
+.customcard {
+    section {
+        display: flex;
+        flex-direction: column;
+        margin: 50px 0px;
+        & img {
+            margin: 0 auto;
+            width: 100px;
+        };
+        & h1 {
+            margin: 0;
+            text-align: center;
+        };
+        & p {
+            text-align: center;
+            padding: 5px;
+            margin: 10px auto 0 auto;
+            width: 80%;
+        }
+    }
+}

@@ -8,10 +8,7 @@
 </head>
 <body>
     <h1>Back</h1>
-
-
     <!-- la vue  -->
     <?php include $this->view; ?>
-
 </body>
 </html>

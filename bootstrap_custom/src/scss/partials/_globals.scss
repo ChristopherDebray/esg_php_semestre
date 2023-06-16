@@ -5,6 +5,7 @@ body {
 }
 
 * {
+  font-family: sans-serif;
   box-sizing: border-box;
   @each $name, $color in $colorVariants {
     &[class*=--#{$name}] {
@@ -61,9 +62,6 @@ ul, ol {
 .container {
   margin: auto;
   max-width: 1200px;
-  section {
-    max-width: 80%;
-  }
 }
 
 @for $i from 0 through 5 {
