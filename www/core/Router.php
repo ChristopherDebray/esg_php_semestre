@@ -149,7 +149,6 @@ final class Router
         $this->setAction("displayPage");
         $this->setPermission(null);
 
-        var_dump($slug);
         $page = new Page();
         $page = $page::getOneBy(['slug'=>$slug]);
         if($page) {
