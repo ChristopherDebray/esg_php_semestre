@@ -33,11 +33,15 @@ dashboard:
 
 hard-delete-user:
   controller: "Admin"
-  action: "HardDeleteUser"
+  action: "hardDeleteUser"
 
 soft-delete-user:
   controller: "Admin"
   action: "softDeleteUser"
+
+update-user:
+  controller: "Admin"
+  action: "updateUser"
 
 profil:
   controller: "UserController"
@@ -53,3 +57,13 @@ update-page:
   controller: "PageController"
   action: "update"
   permission: ["admin"]
+
+# route for deployement CMS
+
+deploy:
+  controller: "Deploy"
+  action: "deployDb"
+
+deploy/user:
+  controller: "Deploy"
+  action: "deployUser"

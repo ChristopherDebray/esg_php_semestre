@@ -6,58 +6,171 @@ use App\core\Security;
 
 final class Router
 {
-    private static $_instance = null;
+    private static ?Router $_instance = null;
+    private static $routes;
 
-    public static function getInstance($uri) {
+    private $controller;
+    private $action;
+    private $permission;
+
+    public function setController($controller): void
+    {
+        $this->controller = $controller;
+    }
+
+    public function setAction($action): void
+    {
+        $this->action = $action;
+    }
+
+    public function setPermission($permission): void
+    {
+        $this->permission = $permission;
+    }
+
+    public function getController(): string
+    {
+        return $this->controller;
+    }
+
+    public function getAction(): string
+    {
+        return $this->action;
+    }
+
+    public function getPermission(): ?string
+    {
+        return $this->permission;
+    }
+
+    public static function getInstance(): Router
+    {
         if(is_null(self::$_instance)) {
-            self::$_instance = new self($uri);  
+            self::$_instance = new self();
         }
         return self::$_instance;
     }
 
-    private function __construct($uri)
+    private function __construct()
     {
-        $routes  = yaml_parse_file("./routes.yml");
-        $uri = explode('?', $uri)[0];
+        self::$routes = yaml_parse_file("./routes.yml");
+    }
+
+    /**
+     * @param Users $user
+     * @return array
+     */
+    public function getRoute()
+    {
+        $slug = $this->currentSlug();
+
+        //Si cms non installé, on ne laisse pas l'accès hors de l'installation
+        if(!INSTALLED && self::$routes[$slug]["controller"] !== 'Deploy'){
+            header('Location: /'.$this->getSlug('Deploy', 'deployDb'));
+        }
+
+        //Si le cms est installé, on autorise pas l'accès à l'installation
+        if(INSTALLED && isset(self::$routes[$slug]) && self::$routes[$slug]["controller"] == 'Deploy'){
+            header('Location: /');
+        }
 
         //Si l'uri n'existe pas dans $routes die page 404
-        if(empty($routes[$uri])){
-            die("Page 404 : Not found");
+        if(!$this->isSlugExist($slug)) {
+            die("Page 404 : Not found / ERROR #1");
         }
-        //Sinon si l'uri ne possède pas de controller ni d'action die erreur fichier routes.yml
-        if(empty($routes[$uri]["controller"]) || empty($routes[$uri]["action"])){
-            die("Erreur fichier routes.yml pour : ".$uri);
-        }
-
-        $c = $routes[$uri]["controller"]; //Security
-        $a = $routes[$uri]["action"]; //login
-        $p = $routes[$uri]["permission"] ?? null; // Admin
 
         //Sinon si il n'y a pas de fichier controller correspondant die absence du fichier controller
-        if(!file_exists("controllers/".$c.".php")){
-            die("Le fichier "."controllers/".$c.".php"." n'existe pas");
+        if(!file_exists("controllers/".$this->getController().".php")) {
+            die("Page 404 : Not found / ERROR #5");
         }
 
         //Sinon si l'action n'existe pas die action inexistante
-        include "controllers/".$c.".php";
+        include "controllers/".$this->getController().".php";
         $namespaceController = "App\controllers\\";
-        if(!class_exists($namespaceController.$c)){
-            die("La classe ".$c." n'existe pas");
+        if(!class_exists($namespaceController.$this->getController())){
+            die("Page 404 : Not found / ERROR #6");
         }
 
-
-        if ($p && !Security::hasRole($p)) {
-            die("qmezlrjk");
+        if ($this->getPermission() && !Security::hasRole($this->getPermission())) {
+            header('Location: /'.$this->getSlug('Security', 'login'));
         }
+
         /** @TODO add the singleton principle to the controller call and if possible to the action */
-        $controller = new ($namespaceController.$c)(); //new Front();
+        $controller = new ($namespaceController.$this->getController())();
 
         //Sinon appel de l'action
-        if(!method_exists($controller, $a)){
-            die("La méthode ".$a." n'existe pas");
+        if(!method_exists($controller, $this->getAction())){
+            die("Page 404 : Not found / ERROR #7");
         }
 
-        //Front->contact();
-        return $controller->$a();
+        return $controller->{$this->getAction()}();
+    }
+
+    public function isSlugExist(String $slug): bool
+    {
+        // verifie si le slug existe dans le fichier routes.yml
+        // verifie si le slug existe en base de données
+        if (!empty(self::$routes[$slug])) {
+            //Sinon si l'uri ne possède pas de controller ni d'action die erreur fichier routes.yml
+            if(!empty(self::$routes[$slug]["controller"])) {
+                $this->setController(self::$routes[$slug]["controller"]);
+            } else {
+                die("Page 404 : Not found / ERROR #2");
+            }
+
+            if (!empty(self::$routes[$slug]["action"])) {
+                $this->setAction(self::$routes[$slug]["action"]);
+            } else {
+                die("Page 404 : Not found / ERROR #3");
+            }
+
+            if (!empty(self::$routes[$slug]["permission"])) {
+                $this->setPermission(self::$routes[$slug]["permission"]);
+            } else {
+                $this->setPermission(null);
+            }
+
+            return true;
+        } else {
+
+            $this->setController("Front");
+            $this->setAction("home");
+            $this->setPermission(null);
+
+            die("ERROR : Search in DB <br>");
+        }
+
+        return false;
+    }
+
+    /**
+     * return slug in request uri
+     *
+     * @return string
+     */
+    public function currentSlug(): string
+    {
+        $uri = explode("?", $_SERVER["REQUEST_URI"]);
+        if (empty($uri[0]) || $uri[0] == "/") {
+            return "default";
+        }
+        return trim(strtolower($uri[0]), '/');
+    }
+
+    /**
+     * return slug function
+     *
+     * @param [string] $controller
+     * @param [string] $action
+     * @return string
+     */
+    public function getSlug($controller, $action): string
+    {
+        foreach (self::$routes as $slug => $route) {
+            if (!empty($route["controller"]) && !empty($route["action"]) && ucfirst($route["controller"]) == ucfirst($controller) && $route["action"] == $action)
+                return $slug;
+        }
+
+        return "/";
     }
 }

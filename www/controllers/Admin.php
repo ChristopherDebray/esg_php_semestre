@@ -1,7 +1,9 @@
 <?php
     namespace App\controllers;
     use App\core\View;
+    use App\Forms\UpdateUser;
     use App\models\User;
+    use App\services\RedirectionService;
 
 final class Admin {
 
@@ -24,6 +26,7 @@ final class Admin {
             $user->setEmail('email@mail.com');
             $user->setIsDeleted(1);
             $user = $user->save();
+            RedirectionService::redirectTo("dashboard");
         }
         else
         {
@@ -44,5 +47,34 @@ final class Admin {
         {
             die("Pas d'ID retourné");
         }
+    }
+
+    public function updateUser()
+    {
+        $id = $_GET['id'];
+        if (!empty($id)) {
+            $user = new User();
+            $user = $user->getOneBy(['id' => $id]);
+            $updateUserForm = new UpdateUser($user);
+            if($updateUserForm->isSubmited() && $updateUserForm->isValid()){
+                var_dump($_POST);
+                $user->setFirstname($_POST["firstname"]);
+                $user->setLastname($_POST["lastname"]);
+                $user->setEmail($_POST["email"]);
+                $user->setStatus($_POST["status"]);
+                $user->setRole($_POST["role"]);
+                $user->save();
+                RedirectionService::redirectTo("dashboard");
+            }
+            $view = new View("admin/updateUser");
+            $view->assign('form', $updateUserForm->getConfig());
+            $view->assign('formErrors', $updateUserForm->listOfErrors);
+        }
+        else
+        {
+            die("Il manque l'id dans l'urlParam");
+        }
+        
+
     }
 }

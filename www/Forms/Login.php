@@ -18,7 +18,8 @@ class Login extends Validator {
                 "class"=>null,
                 "id"=>"form-login",
                 "submit"=>"Se connecter",
-                "cancel"=>"Annuler"
+                "cancel"=>"Annuler",
+                "redirectIfCancel"=>"#"
             ],
             "inputs"=>[
                 "email"=>[
