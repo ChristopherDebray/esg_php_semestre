@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "init-bootstrap": "sass scss/main.scss ../../www/dist/main.css && cp -r ./js ../../www/dist/",
-    "sass-watch": "sass --watch scss/main.scss ../../www/dist/main.css",
+    "sass-watch": "sass --watch scss/main.scss ../../www/dist/main.css"
   },
   "author": "",
   "license": "ISC"

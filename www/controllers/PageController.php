@@ -5,6 +5,7 @@ use App\core\View;
 use App\Forms\Page as PageForm;
 use App\models\Page;
 use App\core\Logger;
+use App\normalizer\PageNormalizer;
 
 final class PageController{
   public function create()
@@ -43,6 +44,22 @@ final class PageController{
     $view = new View("security/login", "account");
     $view->assign('form', $form->getConfig());
     $view->assign('formErrors', $form->listOfErrors);
+  }
+
+  public function displayPage(Page $page)
+  {
+    $wireframeName = 'wireframe'.$page->getTheme();
+    $contentData = $page->getContentAsArray();
+    $configData = $page->getConfigAsArray();
+
+    $view = new View($wireframeName, 'wireframePage');
+    $view->assign('config', $configData);
+    $view->assign('title', $page->getTitle());
+    $view->assign('dataBanner', PageNormalizer::getGroupContentDataByKey($contentData, 'banner'));
+    $view->assign('dataSlideshow', PageNormalizer::getGroupContentDataByKey($contentData, 'slideshow'));
+    $view->assign('dataCustomcard', PageNormalizer::getGroupContentDataByKey($contentData, 'cards'));
+    $view->assign('dataQuote', PageNormalizer::getGroupContentDataByKey($contentData, 'quote'));
+    $view->assign('dataFooter', PageNormalizer::getGroupContentDataByKey($contentData, 'footer'));
   }
 
   private function setPageValues(PageForm $form, Page $page): void
