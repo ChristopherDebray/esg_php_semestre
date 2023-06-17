@@ -10,7 +10,7 @@ use App\normalizer\PageNormalizer;
 final class PageController{
   public function create()
   {
-    $form = new PageForm(1);
+    $form = new PageForm(2);
 
     if($form->isSubmited() && $form->isValid()){
       $page = new Page();
@@ -52,14 +52,20 @@ final class PageController{
     $contentData = $page->getContentAsArray();
     $configData = $page->getConfigAsArray();
 
+
     $view = new View($wireframeName, 'wireframePage');
     $view->assign('config', $configData);
     $view->assign('title', $page->getTitle());
+
     $view->assign('dataBanner', PageNormalizer::getGroupContentDataByKey($contentData, 'banner'));
-    $view->assign('dataSlideshow', PageNormalizer::getGroupContentDataByKey($contentData, 'slideshow'));
-    $view->assign('dataCustomcard', PageNormalizer::getGroupContentDataByKey($contentData, 'cards'));
-    $view->assign('dataQuote', PageNormalizer::getGroupContentDataByKey($contentData, 'quote'));
     $view->assign('dataFooter', PageNormalizer::getGroupContentDataByKey($contentData, 'footer'));
+    if($page->getTheme() == 1) {
+      $view->assign('dataSlideshow', PageNormalizer::getGroupContentDataByKey($contentData, 'slideshow'));
+      $view->assign('dataCustomcard', PageNormalizer::getGroupContentDataByKey($contentData, 'cards'));
+      $view->assign('dataQuote', PageNormalizer::getGroupContentDataByKey($contentData, 'quote'));
+    } elseif($page->getTheme() == 2) {
+      $view->assign('dataPost', PageNormalizer::getGroupContentDataByKey($contentData, 'posts'));
+    }
   }
 
   private function setPageValues(PageForm $form, Page $page): void
