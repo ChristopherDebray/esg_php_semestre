@@ -14,55 +14,6 @@ class Page extends Validator {
     $this->presetData = $presetData;
     $this->themes = [
       1=>[
-        "title"=>[
-          "type"=>"text",
-          "placeholder"=>"Le titre de votre page",
-          "required"=>true,
-          "id"=>"input-email",
-          "class"=>null,
-          "min"=>5,
-          "max"=>60,
-          "error"=>"Votre titre doit faire entre 5 et 60 caractères",
-          "value"=>$this->getPresetData('title'),
-        ],
-        "config-keywords"=>[
-          "type"=>"text",
-          "placeholder"=>"Entrer les mots-clés de page pour la partie SEO",
-          "required"=>false,
-          "id"=>"input-config-keywords",
-          "class"=>null,
-          "value"=>$this->getPresetData('config-keywords'),
-        ],
-        "config-description"=>[
-          "type"=>"text",
-          "placeholder"=>"Entrer la description de page pour la partie SEO",
-          "required"=>false,
-          "id"=>"input-config-description",
-          "class"=>null,
-          "value"=>$this->getPresetData('config-description'),
-        ],
-
-        "content-banner-imgSrc"=>[
-          "type"=>"url",
-          "placeholder"=>"Entrer l'url de votre #banner",
-          "required"=>true,
-          "id"=>"input-content-banner-imgSrc",
-          "class"=>"mt-5 form-control",
-          "value"=>$this->getPresetData('content-banner-imgSrc'),
-          "min"=>1,
-          "error"=>"Le champ #banner-src ne peut pas être vide",
-        ],
-        "content-banner-companyTitle"=>[
-          "type"=>"text",
-          "placeholder"=>"Entrer le titre de votre #banner",
-          "required"=>true,
-          "id"=>"input-content-banner-companyTitle",
-          "class"=>null,
-          "value"=>$this->getPresetData('content-banner-companyTitle'),
-          "min"=>1,
-          "error"=>"Le champ #banner-title ne peut pas être vide",
-        ],
-
         "content-slideshow-one-imgSrc"=>[
           "type"=>"url",
           "placeholder"=>"Entrer l'url de l'image de la #slide-1",
@@ -279,79 +230,8 @@ class Page extends Validator {
           "min"=>1,
           "error"=>"Le champ #quote-info ne peut pas être vide",
         ],
-
-        "content-footer-companyTitle"=>[
-          "type"=>"text",
-          "placeholder"=>"Entrer le contenu de votre #footer-companyTitle",
-          "required"=>true,
-          "id"=>"input-content-footer-companyTitle",
-          "class"=>"mt-5 form-control",
-          "value"=>$this->getPresetData('content-footer-companyTitle'),
-          "min"=>1,
-          "error"=>"Le champ #footer-companyTitle ne peut pas être vide",
-        ],
-        "content-footer-footerColor"=>[
-          "type"=>"color",
-          "placeholder"=>"Entrer la couleur de votre #footer-footerColor",
-          "required"=>true,
-          "id"=>"input-content-footer-footerColor",
-          "class"=>null,
-          "value"=>$this->getPresetData('content-footer-footerColor'),
-          "min"=>1,
-          "error"=>"Le champ #footer-footerColor ne peut pas être vide",
-        ],
       ],
       2=>[
-        "title"=>[
-          "type"=>"text",
-          "placeholder"=>"Le titre de votre page",
-          "required"=>true,
-          "id"=>"input-email",
-          "class"=>null,
-          "min"=>5,
-          "max"=>60,
-          "error"=>"Votre titre doit faire entre 5 et 60 caractères",
-          "value"=>$this->getPresetData('title'),
-        ],
-        "config-keywords"=>[
-          "type"=>"text",
-          "placeholder"=>"Entrer les mots-clés de page pour la partie SEO",
-          "required"=>false,
-          "id"=>"input-config-keywords",
-          "class"=>null,
-          "value"=>$this->getPresetData('config-keywords'),
-        ],
-        "config-description"=>[
-          "type"=>"text",
-          "placeholder"=>"Entrer la description de page pour la partie SEO",
-          "required"=>false,
-          "id"=>"input-config-description",
-          "class"=>null,
-          "value"=>$this->getPresetData('config-description'),
-        ],
-
-        "content-banner-imgSrc"=>[
-          "type"=>"url",
-          "placeholder"=>"Entrer l'url de votre #banner",
-          "required"=>true,
-          "id"=>"input-content-banner-imgSrc",
-          "class"=>"mt-5 form-control",
-          "value"=>$this->getPresetData('content-banner-imgSrc'),
-          "min"=>1,
-          "error"=>"Le champ #banner-src ne peut pas être vide",
-        ],
-        "content-banner-companyTitle"=>[
-          "type"=>"text",
-          "placeholder"=>"Entrer le titre de votre #banner",
-          "required"=>true,
-          "id"=>"input-content-banner-companyTitle",
-          "class"=>null,
-          "value"=>$this->getPresetData('content-banner-companyTitle'),
-          "min"=>1,
-          "error"=>"Le champ #banner-title ne peut pas être vide",
-        ],
-
-
         "content-posts-one-imgSrc"=>[
           "type"=>"url",
           "placeholder"=>"Entrer l'url de l'image #posts-1-imgSrc",
@@ -474,28 +354,6 @@ class Page extends Validator {
           "min"=>1,
           "error"=>"Le champ #posts-1-text ne peut pas être vide",
         ],
-
-
-        "content-footer-companyTitle"=>[
-          "type"=>"text",
-          "placeholder"=>"Entrer le contenu de votre #footer-companyTitle",
-          "required"=>true,
-          "id"=>"input-content-footer-companyTitle",
-          "class"=>"mt-5 form-control",
-          "value"=>$this->getPresetData('content-footer-companyTitle'),
-          "min"=>1,
-          "error"=>"Le champ #footer-companyTitle ne peut pas être vide",
-        ],
-        "content-footer-footerColor"=>[
-          "type"=>"color",
-          "placeholder"=>"Entrer la couleur de votre #footer-footerColor",
-          "required"=>true,
-          "id"=>"input-content-footer-footerColor",
-          "class"=>null,
-          "value"=>$this->getPresetData('content-footer-footerColor'),
-          "min"=>1,
-          "error"=>"Le champ #footer-footerColor ne peut pas être vide",
-        ],
       ],
       3=>[
         
@@ -513,7 +371,7 @@ class Page extends Validator {
           "redirectIfCancel"=>"dashboard",
           "title"=>"Créer une page"
       ],
-      "inputs"=>$this->themes[$selectedTheme]
+      "inputs"=>array_merge($this->getConfigInputs(), $this->getHeaderInputs(), $this->themes[$selectedTheme], $this->getFooterInputs())
     ];
 
     parent::__construct();
@@ -549,5 +407,90 @@ class Page extends Validator {
   private function getPresetData($key)
   {
     return ($this->presetData && $this->presetData[$key]) ? $this->presetData[$key] : null;
+  }
+
+  private function getConfigInputs(): array
+  {
+    return [
+      "title"=>[
+        "type"=>"text",
+        "placeholder"=>"Le titre de votre page",
+        "required"=>true,
+        "id"=>"input-email",
+        "class"=>null,
+        "min"=>5,
+        "max"=>60,
+        "error"=>"Votre titre doit faire entre 5 et 60 caractères",
+        "value"=>$this->getPresetData('title'),
+      ],
+      "config-keywords"=>[
+        "type"=>"text",
+        "placeholder"=>"Entrer les mots-clés de page pour la partie SEO",
+        "required"=>false,
+        "id"=>"input-config-keywords",
+        "class"=>null,
+        "value"=>$this->getPresetData('config-keywords'),
+      ],
+      "config-description"=>[
+        "type"=>"text",
+        "placeholder"=>"Entrer la description de page pour la partie SEO",
+        "required"=>false,
+        "id"=>"input-config-description",
+        "class"=>null,
+        "value"=>$this->getPresetData('config-description'),
+      ]
+    ];
+  }
+
+  private function getHeaderInputs(): array
+  {
+    return [
+      "content-banner-imgSrc"=>[
+        "type"=>"url",
+        "placeholder"=>"Entrer l'url de votre #banner",
+        "required"=>true,
+        "id"=>"input-content-banner-imgSrc",
+        "class"=>"mt-5 form-control",
+        "value"=>$this->getPresetData('content-banner-imgSrc'),
+        "min"=>1,
+        "error"=>"Le champ #banner-src ne peut pas être vide",
+      ],
+      "content-banner-companyTitle"=>[
+        "type"=>"text",
+        "placeholder"=>"Entrer le titre de votre #banner",
+        "required"=>true,
+        "id"=>"input-content-banner-companyTitle",
+        "class"=>null,
+        "value"=>$this->getPresetData('content-banner-companyTitle'),
+        "min"=>1,
+        "error"=>"Le champ #banner-title ne peut pas être vide",
+      ],
+    ];
+  }
+
+  private function getFooterInputs(): array
+  {
+    return [
+      "content-footer-companyTitle"=>[
+        "type"=>"text",
+        "placeholder"=>"Entrer le contenu de votre #footer-companyTitle",
+        "required"=>true,
+        "id"=>"input-content-footer-companyTitle",
+        "class"=>"mt-5 form-control",
+        "value"=>$this->getPresetData('content-footer-companyTitle'),
+        "min"=>1,
+        "error"=>"Le champ #footer-companyTitle ne peut pas être vide",
+      ],
+      "content-footer-footerColor"=>[
+        "type"=>"color",
+        "placeholder"=>"Entrer la couleur de votre #footer-footerColor",
+        "required"=>true,
+        "id"=>"input-content-footer-footerColor",
+        "class"=>null,
+        "value"=>$this->getPresetData('content-footer-footerColor'),
+        "min"=>1,
+        "error"=>"Le champ #footer-footerColor ne peut pas être vide",
+      ],
+    ];
   }
 }
