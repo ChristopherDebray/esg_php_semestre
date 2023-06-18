@@ -1,5 +1,5 @@
 <section class="row">
     <div class="col-12">
-        <?= $dataWysiwyg ?>
+        <?= $dataWysiwyg["content"] ?>
     </div>
 </section>

@@ -48,17 +48,19 @@ final class DesignTestController {
     ];
 
     public $dataArticle = [
-        "title"=>"Heading",
-        "text"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        "backgroundColor"=>"grey"
+        "articleTitle"=>"Heading",
+        "articleText"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "articleBackgroundColor"=>"grey"
     ];
 
     public $dataVideo = [
-        "title"=>"Heading",
+        "videoTitle"=>"Heading",
         "videoSrc"=>"https://www.youtube.com/embed/-7mOz1bINz0"
     ];
 
-    public $dataWysiwyg = "<h1> What you see What you get!</h1>";
+    public $dataWysiwyg = [
+        "content"=>"<h1> What you see What you get!</h1>"
+    ];
 
     public function displayWireframe1()
     {
