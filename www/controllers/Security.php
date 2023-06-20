@@ -9,6 +9,7 @@ use App\core\ORM;
 use App\core\Security as CoreSecurity;
 use App\services\MailerService;
 use App\services\RedirectionService;
+use App\core\Validator;
 
 final class Security
 {
@@ -25,22 +26,26 @@ final class Security
         $form = new Login();
 
         if($form->isSubmited() && $form->isValid()){
-            $inputedPassword = $_POST["pwd"];
-            $user = $userEntity->getOneBy(["email"=>$_POST['email']]);
-            if (!$user) {
-                $form->addError("Identifiant incorrect.");
-            } elseif(!$user->getIsVerified()) {
-                $form->addError("Vous devez vérifier votre compte");
+            if(!Validator::isValidEmail($_POST['email'])) {
+                $form->addError('Veuillez envoyer une adresse mail valide.');
             } else {
-                $isPasswordCorrect = $form->isPasswordCorrect($inputedPassword, $user->getPwd());
-                if ($isPasswordCorrect) {
-                    $token = CoreSecurity::createToken();
-                    $user->setToken($token);
-                    $user->save();
-                    $_SESSION['token'] = $token;
-                    $_SESSION['id'] = $user->getId();
-                    $_SESSION['role'] = $user->getRole();
-                    RedirectionService::redirectTo("profil");
+                $inputedPassword = $_POST["pwd"];
+                $user = $userEntity->getOneBy(["email"=>$_POST['email']]);
+                if (!$user) {
+                    $form->addError("Identifiant incorrect.");
+                } elseif(!$user->getIsVerified()) {
+                    $form->addError("Vous devez vérifier votre compte");
+                } else {
+                    $isPasswordCorrect = $form->isPasswordCorrect($inputedPassword, $user->getPwd());
+                    if ($isPasswordCorrect) {
+                        $token = CoreSecurity::createToken();
+                        $user->setToken($token);
+                        $user->save();
+                        $_SESSION['token'] = $token;
+                        $_SESSION['id'] = $user->getId();
+                        $_SESSION['role'] = $user->getRole();
+                        RedirectionService::redirectTo("profil");
+                    }
                 }
             }
         }
@@ -54,14 +59,18 @@ final class Security
     {
         $form = new Register();
         if($form->isSubmited() && $form->isValid()){
-            $newUser = new User();
-            $newUser->setEntityValues($_POST, $newUser);
-            $token = CoreSecurity::createToken();
-            $newUser->setToken($token);
-            $newUser->save();
-            $mailContent = "<a href=http://localhost/confirm-user-inscription?token=".$token."&email=".$newUser->getEmail().">Valider mon compte</a>";
-            $this->mailerService->sendEmail($newUser->getEmail(), 'Confirmation de compte', $mailContent);
-            RedirectionService::redirectTo("se-connecter");
+            if(!Validator::isValidEmail($_POST['email'])) {
+                $form->addError('Veuillez envoyer une adresse mail valide.');
+            } else {
+                $newUser = new User();
+                $newUser->setEntityValues($_POST, $newUser);
+                $token = CoreSecurity::createToken();
+                $newUser->setToken($token);
+                $newUser->save();
+                $mailContent = "<a href=http://localhost/confirm-user-inscription?token=".$token."&email=".$newUser->getEmail().">Valider mon compte</a>";
+                $this->mailerService->sendEmail($newUser->getEmail(), 'Confirmation de compte', $mailContent);
+                RedirectionService::redirectTo("se-connecter");
+            }
         }
 
         $view = new View("security/register", "account");
@@ -73,7 +82,6 @@ final class Security
     {
         session_destroy();
         RedirectionService::redirectTo('se-connecter');
-        die('test');
     }
 
     public function confirmUserEmail()

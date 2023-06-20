@@ -18,13 +18,16 @@
     });
 </script>
 <section class="container">
-    <?php if($errors): ?>
-        <ul>
-            <?php foreach ($errors as $error):?>
-            <li class="text--danger"><?=$error ?></li>
-            <?php endforeach;?>
-        </ul>
-    <?php endif; ?>
+    <div class="row">
+        <div class="col-3"></div>
+        <?php if($errors): ?>
+            <ul>
+                <?php foreach ($errors as $error):?>
+                <li class="text--danger"><?=$error ?></li>
+                <?php endforeach;?>
+            </ul>
+        <?php endif; ?>
+    </div>
     <div class="row">
         <div class="col-3"></div>
         <form
