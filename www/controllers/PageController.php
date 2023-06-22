@@ -10,7 +10,7 @@ use App\normalizer\PageNormalizer;
 final class PageController{
   public function create()
   {
-    $form = new PageForm(2);
+    $form = new PageForm(3);
 
     if($form->isSubmited() && $form->isValid()){
       $page = new Page();
@@ -57,14 +57,18 @@ final class PageController{
     $view->assign('config', $configData);
     $view->assign('title', $page->getTitle());
 
-    $view->assign('dataBanner', PageNormalizer::getGroupContentDataByKey($contentData, 'banner'));
-    $view->assign('dataFooter', PageNormalizer::getGroupContentDataByKey($contentData, 'footer'));
+    $view->assign('dataBanner', PageNormalizer::normalize($contentData, 'banner'));
+    $view->assign('dataFooter', PageNormalizer::normalize($contentData, 'footer'));
     if($page->getTheme() == 1) {
-      $view->assign('dataSlideshow', PageNormalizer::getGroupContentDataByKey($contentData, 'slideshow'));
-      $view->assign('dataCustomcard', PageNormalizer::getGroupContentDataByKey($contentData, 'cards'));
-      $view->assign('dataQuote', PageNormalizer::getGroupContentDataByKey($contentData, 'quote'));
+      $view->assign('dataSlideshow', PageNormalizer::normalize($contentData, 'slideshow'));
+      $view->assign('dataCustomcard', PageNormalizer::normalize($contentData, 'cards'));
+      $view->assign('dataQuote', PageNormalizer::normalize($contentData, 'quote'));
     } elseif($page->getTheme() == 2) {
-      $view->assign('dataPost', PageNormalizer::getGroupContentDataByKey($contentData, 'posts'));
+      $view->assign('dataPost', PageNormalizer::normalize($contentData, 'posts'));
+    } else {
+      $view->assign('dataArticle', PageNormalizer::normalize($contentData, 'article'));
+      $view->assign('dataVideo', PageNormalizer::normalize($contentData, 'video'));
+      $view->assign('dataWysiwyg', PageNormalizer::normalize($contentData, 'wysiwyg'));
     }
   }
 

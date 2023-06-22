@@ -1,6 +1,6 @@
 <section class="row video">
     <section class="col-12">
-        <h1><?= $dataVideo["title"] ?></h1>
+        <h1><?= $dataVideo["videoTitle"] ?></h1>
         <iframe 
             width="100%"
             height="315"

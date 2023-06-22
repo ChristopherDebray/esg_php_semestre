@@ -356,7 +356,68 @@ class Page extends Validator {
         ],
       ],
       3=>[
-        
+        "content-video-videoTitle"=>[
+          "type"=>"text",
+          "placeholder"=>"Entrer le titre de votre #video-videoTitle",
+          "required"=>true,
+          "id"=>"input-content-video-videoTitle",
+          "class"=>null,
+          "value"=>$this->getPresetData('content-video-videoTitle'),
+          "min"=>1,
+          "error"=>"Le champ #video-videoTitle ne peut pas être vide",
+        ],
+        "content-video-videoSrc"=>[
+          "type"=>"url",
+          "placeholder"=>"Entrer l'url de votre vidéo youtube #video-videoSrc",
+          "required"=>true,
+          "id"=>"input-content-video-videoSrc",
+          "class"=>null,
+          "value"=>$this->getPresetData('content-video-videoSrc'),
+          "min"=>1,
+          "error"=>"Le champ #video-videoSrc ne peut pas être vide",
+        ],
+
+        "content-article-articleTitle"=>[
+          "type"=>"text",
+          "placeholder"=>"Entrer le titre de votre #article-articleTitle",
+          "required"=>true,
+          "id"=>"input-content-article-articleTitle",
+          "class"=>null,
+          "value"=>$this->getPresetData('content-article-articleTitle'),
+          "min"=>1,
+          "error"=>"Le champ #article-articleTitle ne peut pas être vide",
+        ],
+        "content-article-articleText"=>[
+          "type"=>"text",
+          "placeholder"=>"Entrer le texte de votre #article-articleText",
+          "required"=>true,
+          "id"=>"input-content-article-articleText",
+          "class"=>null,
+          "value"=>$this->getPresetData('content-article-articleText'),
+          "min"=>1,
+          "error"=>"Le champ #article-articleText ne peut pas être vide",
+        ],
+        "content-article-articleBackgroundColor"=>[
+          "type"=>"color",
+          "placeholder"=>"Entrer la couleur de fond de votre article #article-articleBackgroundColor",
+          "required"=>true,
+          "id"=>"input-content-article-articleBackgroundColor",
+          "class"=>null,
+          "value"=>$this->getPresetData('content-article-articleBackgroundColor'),
+          "min"=>1,
+          "error"=>"Le champ #article-articleBackgroundColor ne peut pas être vide",
+        ],
+
+        "content-wysiwyg-content"=>[
+          "type"=>"wysiwyg",
+          "placeholder"=>"Entrer le contenu de votre wysiwyg #wysiwyg-content",
+          "required"=>true,
+          "id"=>"input-content-wysiwyg-content",
+          "class"=>null,
+          "value"=>$this->getPresetData('content-wysiwyg-content'),
+          "min"=>1,
+          "error"=>"Le champ #wysiwyg-content ne peut pas être vide",
+        ],
       ]
     ];
 
