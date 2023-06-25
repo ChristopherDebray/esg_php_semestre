@@ -10,6 +10,10 @@ class PageComment extends ORM {
     protected $page_id;
     protected $user_id;
 
+    const STATUS_INACTIVE = 0;
+    const STATUS_ACTIVE = 1;
+    const STATUS_BANNED = 2;
+
     public function __construct()
     {
         parent::__construct();
@@ -37,7 +41,7 @@ class PageComment extends ORM {
     /**
      * @return Integer
      */
-    public function getDateInserted(): int
+    public function getDateInserted(): string
     {
         return $this->date_inserted;
     }
@@ -89,7 +93,7 @@ class PageComment extends ORM {
      */
     public function getPage()
     {
-        $this->page_id;
+        return $this->page_id;
     }
 
     public function setPage($page_id)
@@ -102,7 +106,7 @@ class PageComment extends ORM {
      */
     public function getUser()
     {
-        $this->user_id;
+        return $this->user_id;
     }
 
     public function setUser($user_id)

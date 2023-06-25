@@ -17,7 +17,7 @@
         <?php endforeach; ?>
     });
 </script>
-<section class="container">
+<section class="container <?= $config["config"]["sectionClass"]??"";?>">
     <div class="row">
         <div class="col-3"></div>
         <?php if($errors): ?>

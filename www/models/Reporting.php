@@ -74,7 +74,7 @@ class Reporting extends ORM {
      */
     public function getPage()
     {
-        $this->page_id;
+        return $this->page_id;
     }
 
     public function setPage($page_id)
@@ -87,7 +87,7 @@ class Reporting extends ORM {
      */
     public function getComment()
     {
-        $this->comment_id;
+        return $this->comment_id;
     }
 
     public function setComment($comment_id)

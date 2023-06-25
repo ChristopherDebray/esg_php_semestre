@@ -1,16 +1,14 @@
 <?php
 namespace App\core;
 
-use App\core\Logger;
-
 abstract class ORM{
 
     private $table;
     private $pdo;
 
-    public function __construct($table = null)
+    public function __construct()
     {
-        $this->table = $table ? $table : self::getTable();
+        $this->table = self::getTable();
         $connectDb = ConnectDB::getInstance();
         $this->pdo = $connectDb->getPdo();
     }
@@ -18,21 +16,33 @@ abstract class ORM{
     public static function getTable(): string
     {
         $classExploded = explode("\\", get_called_class());
-        return DB_PREFIX.strtolower(end($classExploded));
+        $table = end($classExploded);
+        $table = preg_replace('/([A-Z])/', '_$1', $table);
+        $table = strtolower(ltrim($table, '_'));
+
+        return DB_PREFIX.$table;
     }
 
-    public static function getOneBy($columns)
+    public static function getOneBy($columns, array $relations = [])
     {
         $connectDb = ConnectDB::getInstance();
         $queryPrepared = $connectDb->getPdo()->prepare("SELECT * FROM ".self::getTable().
                             " WHERE 1 = 1 ".self::createSqlSearchString($columns));
         $queryPrepared->execute($columns);
         $queryPrepared->setFetchMode(\PDO::FETCH_CLASS, get_called_class());
-        $objet = $queryPrepared->fetch();
-        return $objet;
+        $object = $queryPrepared->fetch();
+
+        if ($object !== false && !empty($relations)) {
+            foreach ($relations as $relation => $relatedEntityClass) {
+                $relatedEntity = $relatedEntityClass::getOneBy(['id' => $object->{$relation.'_id'}]);
+                $object->{'set'.$relation}($relatedEntity);
+            }
+        }
+
+        return $object;
     }
 
-    public static function getAll($columns = null)
+    public static function getAll($columns = null, array $relations = [])
     {
         $searchString = $columns ? self::createSqlSearchString($columns): '';
         $connectDb = ConnectDB::getInstance();
@@ -44,8 +54,18 @@ abstract class ORM{
             $queryPrepared->execute($columns);
         }
         $queryPrepared->setFetchMode(\PDO::FETCH_CLASS, get_called_class());
-        $objet = $queryPrepared->fetchAll();
-        return $objet;
+        $objects = $queryPrepared->fetchAll();
+
+        if (!empty($objects) && !empty($relations)) {
+            foreach ($objects as $object) {
+                foreach ($relations as $relation => $relatedEntityClass) {
+                    $relatedEntity = $relatedEntityClass::getOneBy(['id' => $object->{$relation.'_id'}]);
+                    $object->{'set'.$relation}($relatedEntity);
+                }
+            }
+        }
+
+        return $objects;
     }
 
     public function save(): void
@@ -79,8 +99,8 @@ abstract class ORM{
                             " WHERE 1 = 1 ".self::createSqlSearchString($columns));
         $queryPrepared->execute($columns);
         $queryPrepared->setFetchMode(\PDO::FETCH_CLASS, get_called_class());
-        $objet = $queryPrepared->fetch();
-        return $objet;
+        $object = $queryPrepared->fetch();
+        return $object;
     }
 
     public static function setEntityValues($values, $entity): void
@@ -99,7 +119,7 @@ abstract class ORM{
         $sqlSearch = [];
         foreach ($columns as $key=>$value){
             $searchString = $key."=:".$key;
-            $searchString = "AND ".$searchString;
+            $searchString = " AND ".$searchString;
             $sqlSearch[] = $searchString;
         }
 
