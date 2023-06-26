@@ -120,7 +120,7 @@ class Page extends ORM {
     /**
      * @return Integer
      */
-    public function getDateInserted(): int
+    public function getDateInserted(): string
     {
         return $this->date_inserted;
     }
@@ -138,7 +138,7 @@ class Page extends ORM {
     /**
      * @return Integer
      */
-    public function getDateUpdated(): Int
+    public function getDateUpdated(): string
     {
         return $this->date_updated;
     }
@@ -191,5 +191,10 @@ class Page extends ORM {
     public function getConfigAsArray(): array
     {
         return get_object_vars(json_decode($this->config));
+    }
+
+    public function isPageActive(): bool
+    {
+        return $this->status == 1;
     }
 }

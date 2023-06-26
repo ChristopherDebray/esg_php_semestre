@@ -151,7 +151,7 @@ final class Router
 
         $page = new Page();
         $page = $page::getOneBy(['slug'=>$slug]);
-        if($page) {
+        if($page && $page->isPageActive()) {
             $this->setActionParameter($page);
             return true;
         }
