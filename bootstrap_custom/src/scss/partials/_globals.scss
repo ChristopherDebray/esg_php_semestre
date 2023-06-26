@@ -109,6 +109,23 @@ ul, ol {
   }
 }
 
+.position {
+  @each $positionType in $positionTypes {
+    &--#{$positionType} {
+      position: $positionType;
+    }
+  }
+  @each $positionDirection in $positionDirections {
+    &--#{$positionDirection} {
+      #{$positionDirection}: 0px;
+    }
+  }
+}
+
+.justfify-between {
+  justify-content: space-between;
+}
+
 .wh-100 {
   width: 100%;
   height: 100%;

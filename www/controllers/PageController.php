@@ -3,7 +3,11 @@ namespace App\controllers;
 
 use App\core\View;
 use App\Forms\Page as PageForm;
+use App\Forms\PageComment as PageCommentForm;
 use App\models\Page;
+use App\models\PageComment;
+use App\models\User;
+use App\core\Security;
 use App\core\Logger;
 use App\normalizer\PageNormalizer;
 
@@ -52,8 +56,28 @@ final class PageController{
     $contentData = $page->getContentAsArray();
     $configData = $page->getConfigAsArray();
 
-
     $view = new View($wireframeName, 'wireframePage');
+    $pageComment = new PageComment();
+
+    if (Security::isConnected()) {
+      $form = new PageCommentForm();
+      if($form->isSubmited() && $form->isValid()){
+        $pageComment->setContent($_POST['content']);
+        $pageComment->setPage($page->getId());
+        $pageComment->setUser($_SESSION['id']);
+        $pageComment->save();
+      }
+  
+      $view->assign('form', $form->getConfig());
+      $view->assign('formErrors', $form->listOfErrors);
+    }
+
+    $pageCommentRelations = [
+      'user' => User::class,
+    ];
+    $pageComments = $pageComment::getAll(['page_id' => $page->getId(), 'status' => PageComment::STATUS_ACTIVE], $pageCommentRelations);
+    $view->assign('comments', $pageComments);
+
     $view->assign('config', $configData);
     $view->assign('title', $page->getTitle());
 

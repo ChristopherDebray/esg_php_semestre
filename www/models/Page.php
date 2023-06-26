@@ -45,7 +45,7 @@ class Page extends ORM {
      */
     public function getUser()
     {
-        $this->user_id;
+        return $this->user_id;
     }
 
     public function setUser($user_id)

@@ -4,3 +4,4 @@
 
 <?php include 'layout/footer.php' ?>
 
+<?php include 'components/commentSection.php' ?>

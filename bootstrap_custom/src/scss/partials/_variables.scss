@@ -44,6 +44,20 @@ $colorVariants: (
   'disabled': $disabled,
 );
 
+$positionTypes: (
+  relative,
+  sticky,
+  fixed,
+  absolute
+);
+
+$positionDirections: (
+  left,
+  right,
+  top,
+  bottom
+);
+
 :root {
   --white: #{$white};
   --black: #{$black};
