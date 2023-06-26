@@ -4,8 +4,4 @@
 
 <?php include 'layout/footer.php' ?>
 
-<?php
-  if(isset($form)) {
-    $this->modal("form", $form, $formErrors);
-  }
-?>
+<?php include 'components/commentSection.php' ?>
