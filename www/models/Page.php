@@ -82,7 +82,7 @@ class Page extends ORM {
      */
     public function setSlug(string $slug): void
     {
-        $this->slug = str_replace(" ","_", htmlspecialchars(strtolower(trim($slug))));
+        $this->slug = $this->generateSlug($slug);
     }
 
     /**
@@ -196,5 +196,10 @@ class Page extends ORM {
     public function isPageActive(): bool
     {
         return $this->status == 1;
+    }
+
+    public function generateSlug(string $string)
+    {
+        return str_replace(" ","_", htmlspecialchars(strtolower(trim($string))));
     }
 }
