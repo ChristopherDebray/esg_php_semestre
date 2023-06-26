@@ -3,6 +3,7 @@
     use App\core\View;
     use App\Forms\UpdateUser;
     use App\models\User;
+    use App\models\Page;
     use App\services\RedirectionService;
 
 final class Admin {
@@ -13,6 +14,31 @@ final class Admin {
         $users = $user->getAll();
         $view=new View("admin/dashboard");
         $view->assign('data', $users);
+    }
+
+    public function getPages()
+    {
+        $page = new Page();
+        $pages = $page->getAll();
+        $view=new View("admin/dashboardPages");
+        $view->assign('data', $pages);
+    }
+
+    public function switchPageStatus()
+    {
+        $id = $_GET['id'];
+        if (!empty($id)) {
+            $page = new Page();
+            $page = $page->getOneBy(['id' => $id]);
+            $newPageStatus = $page->isPageActive() ? 0 : 1;
+            $page->setStatus($newPageStatus);
+            $page = $page->save();
+            RedirectionService::redirectTo("dashboard-pages");
+        }
+        else
+        {
+            die("Pas d'ID retourné");
+        }
     }
 
     public function hardDeleteUser()

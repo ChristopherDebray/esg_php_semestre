@@ -467,7 +467,7 @@ class Page extends Validator {
 
   private function getPresetData($key)
   {
-    return ($this->presetData && $this->presetData[$key]) ? $this->presetData[$key] : null;
+    return ($this->presetData && isset($this->presetData[$key])) ? $this->presetData[$key] : null;
   }
 
   private function getConfigInputs(): array

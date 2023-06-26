@@ -30,6 +30,17 @@ deconnexion:
 dashboard:
   controller: "Admin"
   action: "getUsers"
+  permission: ["admin"]
+
+dashboard-pages:
+  controller: "Admin"
+  action: "getPages"
+  permission: ["admin"]
+
+switch-page-status:
+  controller: "Admin"
+  action: "switchPageStatus"
+  permission: ["admin"]
 
 hard-delete-user:
   controller: "Admin"

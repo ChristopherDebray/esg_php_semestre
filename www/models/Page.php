@@ -82,7 +82,7 @@ class Page extends ORM {
      */
     public function setSlug(string $slug): void
     {
-        $this->slug = str_replace(" ","_", htmlspecialchars(strtolower(trim($slug))));
+        $this->slug = $this->generateSlug($slug);
     }
 
     /**
@@ -120,7 +120,7 @@ class Page extends ORM {
     /**
      * @return Integer
      */
-    public function getDateInserted(): int
+    public function getDateInserted(): string
     {
         return $this->date_inserted;
     }
@@ -138,7 +138,7 @@ class Page extends ORM {
     /**
      * @return Integer
      */
-    public function getDateUpdated(): Int
+    public function getDateUpdated(): string
     {
         return $this->date_updated;
     }
@@ -191,5 +191,15 @@ class Page extends ORM {
     public function getConfigAsArray(): array
     {
         return get_object_vars(json_decode($this->config));
+    }
+
+    public function isPageActive(): bool
+    {
+        return $this->status == 1;
+    }
+
+    public function generateSlug(string $string)
+    {
+        return str_replace(" ","_", htmlspecialchars(strtolower(trim($string))));
     }
 }

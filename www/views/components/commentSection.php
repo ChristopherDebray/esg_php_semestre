@@ -1,3 +1,4 @@
+<?php if (isset($comments)): ?>
 <section class="row pb-5">
   <?php foreach ($comments as $comment):?>
     <div class="col-3"></div>
@@ -29,3 +30,4 @@
     }
   ?>
 </section>
+<?php endif; ?>

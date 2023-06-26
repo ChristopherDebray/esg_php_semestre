@@ -18,7 +18,14 @@ final class PageController{
 
     if($form->isSubmited() && $form->isValid()){
       $page = new Page();
-      $this->setPageValues($form, $page);
+      $pageSlug = $page->generateSlug($_POST['title']);
+      $pageExists = $page::getOneBy(['slug' => $pageSlug]);
+      
+      if ($pageExists) {
+        $form->addError('Une page avec ce titre existe déjà.');
+      } else {
+        $this->setPageValues($form, $page);
+      }
     }
 
     $view = new View("security/login", "account");
@@ -41,8 +48,19 @@ final class PageController{
     $form = new PageForm($page->getTheme(), $data);
 
     if($form->isSubmited() && $form->isValid()){
-      $this->setPageValues($form, $page);
-      header("Refresh:0");
+      // Logger::logData($form->getFormattedData($_POST));
+      // die();
+      $pageSlug = $page->generateSlug($_POST['title']);
+      
+      if ($pageSlug !== $page->getSlug()) {
+        $pageExists = $page::getOneBy(['slug' => $pageSlug]);
+        if ($pageExists) {
+          $form->addError('Une page avec ce titre existe déjà.');
+        }
+      } else {
+        $this->setPageValues($form, $page);
+        header("Refresh:0");
+      }
     }
 
     $view = new View("security/login", "account");
