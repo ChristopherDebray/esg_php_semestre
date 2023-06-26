@@ -17,6 +17,7 @@
             echo $formattedDate;
           ?>
         </span>
+        <a class="button --danger" href='signal-comment?id=<?=$comment->getId()?>&page=<?= $comment->getPage()->getSlug()?>' >Signaler</a>
       </div>
       <div class="col-12 font--md pt-5">
         <?= $comment->getContent() ?>

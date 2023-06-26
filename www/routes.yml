@@ -83,6 +83,10 @@ update-page:
   action: "update"
   permission: ["admin"]
 
+signal-comment:
+  controller: "PageController"
+  action: "signalComment"
+
 # route for deployement CMS
 
 deploy:
