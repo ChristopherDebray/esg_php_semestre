@@ -4,6 +4,8 @@
     use App\Forms\UpdateUser;
     use App\models\User;
     use App\models\Page;
+    use App\models\PageComment;
+    use App\models\Reporting;
     use App\services\RedirectionService;
 
 final class Admin {
@@ -22,6 +24,14 @@ final class Admin {
         $pages = $page->getAll();
         $view=new View("admin/dashboardPages");
         $view->assign('data', $pages);
+    }
+
+    public function getReportings()
+    {
+        $report = new Reporting();
+        $reports = $report->getAll(['status'=>Reporting::STATUS_ACTIVE]);
+        $view=new View("admin/dashboardReports");
+        $view->assign('data', $reports);
     }
 
     public function switchPageStatus()
@@ -102,5 +112,38 @@ final class Admin {
         }
         
 
+    }
+
+    public function validateComment()
+    {
+        $id = $_GET['id'];
+        if (!empty($id)) {
+            $reporting = new Reporting();
+            $reporting = $reporting->getOneBy(['id' => $id]);
+            $reporting->setStatus(Reporting::STATUS_REVIEWED);
+            $reporting = $reporting->save();
+            RedirectionService::redirectTo("dashboard-reportings");
+        } else {
+            die("Pas d'ID retourné");
+        }
+    }
+
+    public function blockComment()
+    {
+        $id = $_GET['id'];
+        if (!empty($id)) {
+            $reporting = new Reporting();
+            $reporting = $reporting->getOneBy(['id' => $id]);
+            $commentId = $reporting->getComment();
+            $reporting->setStatus(Reporting::STATUS_REVIEWED);
+            $reporting = $reporting->save();
+            $comment = new PageComment();
+            $comment = $comment->getOneBy(['id'=>$commentId]);
+            $comment->setStatus(PageComment::STATUS_BANNED);
+            $comment->save();
+            RedirectionService::redirectTo("dashboard-reportings");
+        } else {
+            die("Pas d'ID retourné");
+        }
     }
 }

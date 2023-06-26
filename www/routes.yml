@@ -37,6 +37,11 @@ dashboard-pages:
   action: "getPages"
   permission: ["admin"]
 
+dashboard-reportings:
+  controller: "Admin"
+  action: "getReportings"
+  permission: ["admin"]
+
 switch-page-status:
   controller: "Admin"
   action: "switchPageStatus"
@@ -81,6 +86,16 @@ create-page:
 update-page:
   controller: "PageController"
   action: "update"
+  permission: ["admin"]
+
+validate-comment:
+  controller: "Admin"
+  action: "validateComment"
+  permission: ["admin"]
+
+block-comment:
+  controller: "Admin"
+  action: "blockComment"
   permission: ["admin"]
 
 # route for deployement CMS
