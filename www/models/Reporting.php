@@ -10,6 +10,10 @@ class Reporting extends ORM {
     protected $comment_id;
     protected $status = 1;
 
+    const STATUS_INACTIVE = 0;
+    const STATUS_ACTIVE = 1;
+    const STATUS_REVIEWED = 2;
+
     public function __construct()
     {
         parent::__construct();
@@ -38,7 +42,7 @@ class Reporting extends ORM {
         /**
      * @return Integer
      */
-    public function getDateInserted(): int
+    public function getDateInserted(): string
     {
         return $this->date_inserted;
     }
@@ -56,7 +60,7 @@ class Reporting extends ORM {
     /**
      * @return Integer
      */
-    public function getDateUpdated(): Int
+    public function getDateUpdated(): string
     {
         return $this->date_updated;
     }
