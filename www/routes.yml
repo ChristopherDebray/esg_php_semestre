@@ -98,6 +98,10 @@ block-comment:
   action: "blockComment"
   permission: ["admin"]
 
+signal-comment:
+  controller: "PageController"
+  action: "signalComment"
+
 # route for deployement CMS
 
 deploy:

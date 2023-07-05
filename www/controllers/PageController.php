@@ -10,6 +10,8 @@ use App\models\User;
 use App\core\Security;
 use App\core\Logger;
 use App\normalizer\PageNormalizer;
+use App\models\Reporting;
+use App\services\RedirectionService;
 
 final class PageController{
   public function create()
@@ -92,6 +94,7 @@ final class PageController{
 
     $pageCommentRelations = [
       'user' => User::class,
+      'page' => Page::class,
     ];
     $pageComments = $pageComment::getAll(['page_id' => $page->getId(), 'status' => PageComment::STATUS_ACTIVE], $pageCommentRelations);
     $view->assign('comments', $pageComments);
@@ -122,5 +125,14 @@ final class PageController{
     $page->setUser($_SESSION['id']);
     $page->setTheme(1);
     $page->save();
+  }
+
+  public function signalComment(): void
+  {
+    $signalment = new Reporting();
+    $signalment->setComment($_GET['id']);
+    $signalment->save();
+    RedirectionService::redirectTo($_GET['page']);
+
   }
 }
