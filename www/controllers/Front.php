@@ -3,8 +3,6 @@ namespace App\controllers;
 use App\core\View;
 
 final class Front{
-
-
     public function home()
     {
         $pseudo = "Prof";
@@ -13,11 +11,8 @@ final class Front{
         $view->assign("lastname", "SKZYPCZYK");
     }
 
-
     public function contact()
     {
-        die("Voici ma nouvelle page de contact");
+        return Router::error404("Page introuvable / ERROR MR72R&6");
     }
-
-
 }
