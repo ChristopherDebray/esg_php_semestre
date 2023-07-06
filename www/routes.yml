@@ -39,6 +39,7 @@ hard-delete-user:
 soft-delete-user:
   controller: "Admin"
   action: "softDeleteUser"
+  permission: ["suscriber"]
 
 update-user:
   controller: "Admin"
@@ -81,3 +82,7 @@ deploy:
 deploy/user:
   controller: "Deploy"
   action: "deployUser"
+
+sitemap.xml:
+  controller: "Front"
+  action: "sitemap"
