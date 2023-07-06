@@ -3,6 +3,7 @@ namespace App\services;
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use App\core\DotEnv;
 
 class MailerService
 {
@@ -10,11 +11,13 @@ class MailerService
 
   public function __construct()
   {
+    (new DotEnv(dirname(__DIR__) . '/.env'))->load();
+
     $this->mailer = new PHPMailer();
     $this->mailer->isSMTP();
-    $this->mailer->Host = 'mailhog';
-    $this->mailer->Port = 1025;
-    $this->mailer->setFrom('christopherdebray@outlook.fr', 'Christopher Debray');
+    $this->mailer->Host = $_ENV['MAIL_HOST'];
+    $this->mailer->Port = $_ENV['MAIL_PORT'];
+    $this->mailer->setFrom($_ENV('MAIL_USER'), $_ENV['MAIL_NAME']);
   }
 
   public function sendEmail(string $target, string $subject, string $content)

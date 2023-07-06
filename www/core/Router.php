@@ -1,7 +1,7 @@
 <?php
-
 namespace App\core;
 
+use App\core\DotEnv;
 use App\core\Security;
 use App\models\Page;
 
@@ -76,13 +76,15 @@ final class Router
     {
         $slug = $this->currentSlug();
 
+        (new DotEnv(dirname(dirname(__DIR__)).'/html/.env'))->load();
+
         //Si cms non installé, on ne laisse pas l'accès hors de l'installation
-        if(!INSTALLED && self::$routes[$slug]["controller"] !== 'Deploy'){
+        if(!$_ENV['INSTALLED'] && self::$routes[$slug]["controller"] !== 'Deploy'){
             header('Location: /'.$this->getSlug('Deploy', 'deployDb'));
         }
 
         //Si le cms est installé, on autorise pas l'accès à l'installation
-        if(INSTALLED && isset(self::$routes[$slug]) && self::$routes[$slug]["controller"] == 'Deploy'){
+        if($_ENV['INSTALLED'] && isset(self::$routes[$slug]) && self::$routes[$slug]["controller"] == 'Deploy'){
             header('Location: /');
         }
 
