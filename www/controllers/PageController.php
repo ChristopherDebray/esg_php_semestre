@@ -16,12 +16,17 @@ use App\services\RedirectionService;
 final class PageController{
   public function create()
   {
-    $form = new PageForm(3);
+    if(!array_key_exists('wireframe', $_GET)) {
+      die('Il faut indiquer un type de page valide');
+    }
+    $pageTheme = $_GET['wireframe'];
+    $form = new PageForm($pageTheme);
 
     if($form->isSubmited() && $form->isValid()){
       $page = new Page();
       $pageSlug = $page->generateSlug($_POST['title']);
       $pageExists = $page::getOneBy(['slug' => $pageSlug]);
+      $page->setTheme($pageTheme);
       
       if ($pageExists) {
         $form->addError('Une page avec ce titre existe déjà.');
@@ -56,6 +61,9 @@ final class PageController{
         $pageExists = $page::getOneBy(['slug' => $pageSlug]);
         if ($pageExists) {
           $form->addError('Une page avec ce titre existe déjà.');
+        } else {
+          $this->setPageValues($form, $page);
+          header("Refresh:0");
         }
       } else {
         $this->setPageValues($form, $page);
@@ -122,7 +130,6 @@ final class PageController{
     $page->setEntityValues($data, $page);
     $page->setSlug($data['title']);
     $page->setUser($_SESSION['id']);
-    $page->setTheme(1);
     $page->save();
   }
 
