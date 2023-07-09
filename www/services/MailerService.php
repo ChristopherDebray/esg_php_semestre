@@ -11,7 +11,7 @@ class MailerService
 
   public function __construct()
   {
-    (new DotEnv(dirname(__DIR__) . '/.env'))->load();
+    (new DotEnv(dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . ".env"))->load();
 
     $this->mailer = new PHPMailer();
     $this->mailer->isSMTP();

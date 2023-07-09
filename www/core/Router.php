@@ -77,7 +77,7 @@ final class Router
     {
         $slug = $this->currentSlug();
 
-        (new DotEnv(dirname(dirname(__DIR__)).'/html/.env'))->load();
+        (new DotEnv(dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . ".env"))->load();
 
         //Si cms non installé, on ne laisse pas l'accès hors de l'installation
         if(!$_ENV['INSTALLED'] && self::$routes[$slug]["controller"] !== 'Deploy'){

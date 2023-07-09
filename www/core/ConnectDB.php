@@ -9,7 +9,7 @@ final class ConnectDB
     static $instance = null;
 
     private function __construct(){
-        (new DotEnv(dirname(__DIR__) . '/.env'))->load();
+        (new DotEnv(dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . ".env"))->load();
 
         $conn = $_ENV['DB_DRIVER'].":host=".$_ENV['DB_HOST'].";dbname=".$_ENV['DB_NAME'].";port=".$_ENV['DB_PORT'];
         $options = array(
