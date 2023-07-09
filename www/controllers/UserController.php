@@ -5,6 +5,6 @@ use App\core\View;
 final class UserController{
   public function index()
   {
-    $view = new View("main/homepage", "back");
+    $view = new View("pageListing", "back");
   }
 }

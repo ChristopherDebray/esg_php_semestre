@@ -61,11 +61,6 @@ update-user:
   action: "updateUser"
   permission: ["admin"]
 
-profil:
-  controller: "UserController"
-  action: "index"
-  permission: ["admin", "guest", "suscriber"]
-
 wireframe1:
   controller: "DesignTestController"
   action: "displayWireframe1"
@@ -101,6 +96,10 @@ block-comment:
 signal-comment:
   controller: "PageController"
   action: "signalComment"
+
+pages-list:
+  controller: "PageController"
+  action: "listPages"
 
 # route for deployement CMS
 

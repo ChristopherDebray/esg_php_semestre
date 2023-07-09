@@ -8,7 +8,7 @@ final class Front{
     public function home()
     {
         $pseudo = "Prof";
-        $view = new View("main/homepage", "back");
+        $view = new View("main/pageListing", "back");
         $view->assign("pseudo", $pseudo);
         $view->assign("lastname", "SKZYPCZYK");
     }

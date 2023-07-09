@@ -13,7 +13,7 @@ final class Admin {
     public function getUsers()
     {
         $user = new User();
-        $users = $user->getAll();
+        $users = $user->getAll(['is_deleted'=>0]);
         $view=new View("admin/dashboard");
         $view->assign('data', $users);
     }
@@ -59,7 +59,7 @@ final class Admin {
             $user = $user->getOneBy(['id' => $id]);
             $user->setFirstname('firstname');
             $user->setLastname('lastname');
-            $user->setEmail('email@mail.com');
+            $user->setEmail(User::HARD_DELETED_USER_EMAIL);
             $user->setIsDeleted(1);
             $user = $user->save();
             RedirectionService::redirectTo("dashboard");

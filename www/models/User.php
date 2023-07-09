@@ -22,6 +22,8 @@ class User extends ORM {
     const ROLE_SUSCRIBER = "suscriber";
     const ROLE_GUEST     = "guest";
 
+    const HARD_DELETED_USER_EMAIL = "9f1795cc4e874332b11dc6970712b726@mail.com";
+
     const STATUS_INACTIVE = 0;
     const STATUS_ACTIVE = 1;
     const STATUS_BANNED = 2;

@@ -44,7 +44,7 @@ final class Security
                         $_SESSION['token'] = $token;
                         $_SESSION['id'] = $user->getId();
                         $_SESSION['role'] = $user->getRole();
-                        RedirectionService::redirectTo("profil");
+                        RedirectionService::redirectTo("pages-list");
                     }
                 }
             }
@@ -59,16 +59,7 @@ final class Security
     {
         $form = new Register();
         if($form->isSubmited() && $form->isValid()){
-            if(!Validator::isValidEmail($_POST['email'])) {
-                $form->addError('Veuillez envoyer une adresse mail valide.');
-            } else {
-                $newUser = new User();
-                $newUser->setEntityValues($_POST, $newUser);
-                $token = CoreSecurity::createToken();
-                $newUser->setToken($token);
-                $newUser->save();
-                $mailContent = "<a href=http://localhost/confirm-user-inscription?token=".$token."&email=".$newUser->getEmail().">Valider mon compte</a>";
-                $this->mailerService->sendEmail($newUser->getEmail(), 'Confirmation de compte', $mailContent);
+            if($this->createUser()) {
                 RedirectionService::redirectTo("se-connecter");
             }
         }
@@ -76,6 +67,35 @@ final class Security
         $view = new View("security/register", "account");
         $view->assign('form', $form->getConfig());
         $view->assign('formErrors', $form->listOfErrors);
+    }
+
+    private function createUser(): bool
+    {
+        if(!Validator::isValidEmail($_POST['email'])) {
+            $form->addError('Veuillez envoyer une adresse mail valide.');
+            return false;
+        } 
+
+        if ($_POST['password-confirm'] !== $_POST['pwd']) {
+            $form->addError('Le mot de passe et sa confirmation doivent être identique.');
+            return false;
+        }
+
+        $newUser = new User();
+        $isUserAlreadyExistant = $newUser::getOneBy(['email'=>$_POST['email']]);
+
+        if($isUserAlreadyExistant) {
+            $form->addError('Cet email est déjà utilisé');
+            return false;
+        }
+
+        $newUser->setEntityValues($_POST, $newUser);
+        $token = CoreSecurity::createToken();
+        $newUser->setToken($token);
+        $newUser->save();
+        $mailContent = "<a href=http://localhost/confirm-user-inscription?token=".$token."&email=".$newUser->getEmail().">Valider mon compte</a>";
+        $this->mailerService->sendEmail($newUser->getEmail(), 'Confirmation de compte', $mailContent);
+        return true;
     }
 
     public function logout()

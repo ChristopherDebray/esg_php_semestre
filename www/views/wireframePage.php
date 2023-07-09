@@ -9,6 +9,7 @@
     <script src="../dist/js/slideshow.js" defer></script>
 </head>
 <body>
+    <?php include 'components/navbar.php' ?>
     <div class="container">
         <?php include $this->view; ?>
     </div>
