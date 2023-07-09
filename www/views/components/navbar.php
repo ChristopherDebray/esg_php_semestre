@@ -13,6 +13,9 @@
       <?php if(Security::isConnected()): ?>
         <?php if(Security::hasRole(['admin'])): ?>
           <li>
+            <a href="components-documentation">Documentation composants</a>
+          </li>
+          <li>
             <div class="dropdown">
               <button class="dropbtn">Gestion du site</button>
               <div class="dropdown-content">
