@@ -48,8 +48,6 @@ CREATE TABLE "public"."esgi_page" (
     CONSTRAINT "esgi_page_pkey" PRIMARY KEY ("id")
 );
 
-INSERT INTO "public"."esgi_page" (user_id, title, slug, date_inserted, date_updated, config, content, theme, status) VALUES (1, 'Toto Page', 'toto-page', '2023-06-13 09:30:38', '2023-06-13 09:30:38', '{"toto":[1,2]}', '{"toto":[1,2]}', 1, 1);
-
 CREATE TABLE "public"."esgi_page_comment" (
     "id" integer DEFAULT nextval('esgi_page_comment_id_seq') NOT NULL,
     "date_inserted" timestamp NOT NULL,
