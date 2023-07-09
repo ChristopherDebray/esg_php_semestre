@@ -1,8 +1,9 @@
 <?php
-namespace App\Core;
+namespace App\core;
 
-use App\Core\Validator;
-use App\Core\Router;
+use App\core\ConnectDB;
+use App\core\Validator;
+use App\core\Router;
 use App\core\DotEnv;
 
 class Deploy
@@ -14,20 +15,19 @@ class Deploy
 
         // Install datas
         $connectDb = ConnectDB::getInstance();
-        $sql = file_get_contents('./dump.sql', false, null);
-
+        
         if (is_null($connectDb->getPdo())) {
             throw new \PDOException('Impossible de se connecter à la base de données.');
         }
 
+        $sql = file_get_contents('./dump.sql', false, null);
+
         try{
             $pdo = $connectDb->getPdo();
             $pdo->exec($sql);
-            return true;
+            throw new \PDOException('Impossible d\'importer la base de données.');
         }catch(\PDOException $e){
-            var_dump($e);
-            die("error db");
-            return false;
+            throw new \PDOException('ERROR : '.$e->getMessage());
         }
     }
 
