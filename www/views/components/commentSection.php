@@ -9,6 +9,9 @@
             echo $comment->getUser()->getFirstname() . " " . $comment->getUser()->getLastname();
             if ($comment->isVerified()) { ?>
               <span class="badge badge--success">commentaire vérifié</span>
+            <?php
+            } elseif ($comment->isSignaled()) { ?>
+              <span class="badge badge--danger">commentaire signalé</span>
             <?php }
           ?>
         </span>
