@@ -1,6 +1,7 @@
 <?php
-
 namespace App\core;
+
+use App\core\DotEnv;
 
 final class ConnectDB
 {
@@ -8,8 +9,16 @@ final class ConnectDB
     static $instance = null;
 
     private function __construct(){
+        (new DotEnv(dirname(__DIR__) . '/.env'))->load();
+
+        $conn = $_ENV['DB_DRIVER'].":host=".$_ENV['DB_HOST'].";dbname=".$_ENV['DB_NAME'].";port=".$_ENV['DB_PORT'];
+        $options = array(
+            \PDO::ATTR_PERSISTENT => true,
+            \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION
+        );
+
         try{
-            $this->pdo = new \PDO(DB_DRIVER.":host=".DB_HOST.";dbname=".DB_NAME.";port=".DB_PORT, DB_USER, DB_PWD);
+            $this->pdo = new \PDO($conn, $_ENV['DB_USER'], $_ENV['DB_PWD'], $options);
         }catch (\Exception $e){
             return false;
         }

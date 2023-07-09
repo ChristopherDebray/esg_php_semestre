@@ -1,26 +1,16 @@
 <?php
-declare (strict_types = 1);
-
 namespace App\Core;
 
 use App\Core\Validator;
 use App\Core\Router;
+use App\core\DotEnv;
 
 class Deploy
 {
-    private String $configFile = './conf.inc.php';
-
     public function confDB($dbParams){
-
-        // Change config file
-        $config = file_get_contents($this->configFile, false, null);
-
         foreach($dbParams as $key => $value){
-            $config = preg_replace('#// define\("'.strtoupper($key).'", "(.*?)"\);#', 'define("'.strtoupper($key).'", "'.$value.'");', $config);
-
-            define(strtoupper($key), $value);
+            (new DotEnv(dirname(__DIR__) . '/.env'))->setenv($key, $value);
         }
-        file_put_contents($this->configFile, $config);
 
         // Install datas
         $connectDb = ConnectDB::getInstance();
@@ -43,8 +33,6 @@ class Deploy
 
     public function finishDeployed(): void
     {
-        $config = file_get_contents($this->configFile, false, null);
-        $config = preg_replace('#define\("INSTALLED", "0"\);#', 'define("INSTALLED", "1");', $config);
-        file_put_contents($this->configFile, $config);
+        (new DotEnv(dirname(__DIR__) . '/.env'))->setenv("INSTALLED", 1);
     }
 }
