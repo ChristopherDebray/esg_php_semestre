@@ -59,6 +59,13 @@ ul, ol {
   @include reset-list();
 }
 
+pre {
+  background: #766969;
+  color: white;
+  line-height: map-get($fontSizes, "xxl");
+  @include border-radius(map-get($roundedVariants, "md"));
+}
+
 .container {
   margin: auto;
   max-width: 1200px;

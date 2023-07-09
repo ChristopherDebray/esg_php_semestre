@@ -102,6 +102,10 @@ pages-list:
   controller: "PageController"
   action: "listPages"
 
+components-documentation:
+  controller: "Admin"
+  action: "componentDocumentation"
+
 # route for deployement CMS
 
 deploy:

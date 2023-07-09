@@ -146,4 +146,9 @@ final class Admin {
             die("Pas d'ID retourné");
         }
     }
+
+    public function componentDocumentation()
+    {
+        $view=new View("admin/componentDocumentation");
+    }
 }
