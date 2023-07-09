@@ -95,6 +95,7 @@ final class PageController{
       'page' => Page::class,
     ];
     $pageComments = $pageComment::getAll(['page_id' => $page->getId(), 'status' => PageComment::STATUS_ACTIVE], $pageCommentRelations);
+
     $view->assign('comments', $pageComments);
 
     $view->assign('config', $configData);

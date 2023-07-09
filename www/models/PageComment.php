@@ -1,6 +1,7 @@
 <?php
 namespace App\models;
 use App\core\ORM;
+use App\models\Reporting;
 
 class PageComment extends ORM {
     protected $id = -1;
@@ -112,5 +113,17 @@ class PageComment extends ORM {
     public function setUser($user_id)
     {
         $this->user_id = $user_id;
+    }
+
+    public function isVerified()
+    {
+        $reporting = new Reporting();
+        return $reporting::getOneBy(['comment_id' => $this->getId(), 'status' => Reporting::STATUS_REVIEWED]);
+    }
+
+    public function isSignaled()
+    {
+        $reporting = new Reporting();
+        return $reporting::getOneBy(['comment_id' => $this->getId(), 'status' => Reporting::STATUS_ACTIVE]);
     }
 }
