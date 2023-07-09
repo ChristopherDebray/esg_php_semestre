@@ -25,7 +25,7 @@ class Deploy
         try{
             $pdo = $connectDb->getPdo();
             $pdo->exec($sql);
-            throw new \PDOException('Impossible d\'importer la base de données.');
+            return true;
         }catch(\PDOException $e){
             throw new \PDOException('ERROR : '.$e->getMessage());
         }

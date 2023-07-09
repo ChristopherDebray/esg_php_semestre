@@ -50,7 +50,8 @@ final class Deploy
             $newUser->setEntityValues($_POST, $newUser);
             $token = CoreSecurity::createToken();
             $newUser->setToken($token);
-            $newUser->setStatus(3);
+            $newUser->setStatus(1);
+            $newUser->setRole('admin');
             $newUser->save();
             $mailContent = "<a href=http://localhost/confirm-user-inscription?token=".$token."&email=".$newUser->getEmail().">Valider mon compte</a>";
             $this->mailerService->sendEmail($newUser->getEmail(), 'Confirmation de compte', $mailContent);
@@ -58,7 +59,7 @@ final class Deploy
             $DeployCore = new DeployCore;
             $DeployCore->finishDeployed();
 
-            header('Location: /'.Router::getInstance()->getSlug('Front', 'home'));
+            header('Location: /'.Router::getInstance()->getSlug('PageController', 'listPages'));
             exit;
         }
 
