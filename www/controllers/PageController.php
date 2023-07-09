@@ -50,8 +50,6 @@ final class PageController{
     $form = new PageForm($page->getTheme(), $data);
 
     if($form->isSubmited() && $form->isValid()){
-      // Logger::logData($form->getFormattedData($_POST));
-      // die();
       $pageSlug = $page->generateSlug($_POST['title']);
       
       if ($pageSlug !== $page->getSlug()) {
@@ -134,5 +132,13 @@ final class PageController{
     $signalment->save();
     RedirectionService::redirectTo($_GET['page']);
 
+  }
+
+  public function listPages()
+  {
+    $page = new Page();
+    $pages = $page->getAll();
+    $view=new View("main/pageListing", "front");
+    $view->assign('data', $pages);
   }
 }

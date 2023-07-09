@@ -8,9 +8,8 @@
     <script src="../dist/js/slideshow.js" defer></script>
 </head>
 <body>
-    <h1>Front</h1>
+    <?php include 'components/navbar.php' ?>
     <div class="container">
-        <!-- la vue  -->
         <?php include $this->view; ?>
     </div>
 </body>

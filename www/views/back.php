@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="../dist/main.css">
 </head>
 <body>
-    <h1>Back</h1>
-    <!-- la vue  -->
+    <?php include 'components/navbar.php' ?>
     <?php include $this->view; ?>
 </body>
 </html>

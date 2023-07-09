@@ -8,11 +8,10 @@
     <link rel="stylesheet" href="../dist/main.css">
 </head>
 <body>
-<h1>Comptes</h1>
 
-<main>
-<?php include $this->view; ?>
-</main>
-
+<?php include 'components/navbar.php' ?>
+<div class="container">
+    <?php include $this->view; ?>
+</div>
 </body>
 </html>
