@@ -35,7 +35,7 @@ final class PageController{
       }
     }
 
-    $view = new View("security/login", "account");
+    $view = new View("page/create_update", "account");
     $view->assign('form', $form->getConfig());
     $view->assign('formErrors', $form->listOfErrors);
   }
@@ -71,8 +71,9 @@ final class PageController{
       }
     }
 
-    $view = new View("security/login", "account");
+    $view = new View("page/create_update", "account");
     $view->assign('form', $form->getConfig());
+    $view->assign('pageTheme', $page->getTheme());
     $view->assign('formErrors', $form->listOfErrors);
   }
 
