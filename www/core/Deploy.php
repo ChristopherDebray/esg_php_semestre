@@ -9,7 +9,7 @@ class Deploy
 {
     public function confDB($dbParams){
         foreach($dbParams as $key => $value){
-            (new DotEnv(dirname(__DIR__) . '/.env'))->setenv($key, $value);
+            (new DotEnv(dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . ".env"))->setenv($key, $value);
         }
 
         // Install datas
@@ -33,6 +33,6 @@ class Deploy
 
     public function finishDeployed(): void
     {
-        (new DotEnv(dirname(__DIR__) . '/.env'))->setenv("INSTALLED", 1);
+        (new DotEnv(dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . ".env"))->setenv("INSTALLED", 1);
     }
 }
