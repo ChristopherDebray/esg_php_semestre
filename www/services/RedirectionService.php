@@ -9,9 +9,8 @@ final class RedirectionService
 
   public static function redirectTo($route, $params = null)
   {
-    $basePath = "http://localhost/";
     $redirection = $basePath.$route;
-    header("Location: ".$redirection);
+    header("Location: /".$redirection);
   }
 
   public static function getInstance()
