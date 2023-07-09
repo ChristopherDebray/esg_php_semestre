@@ -1,3 +1,8 @@
+<section class="row py-4">
+    <a href="create-page?wireframe=1" class="button --success">Créer une page de type #1</a>
+    <a href="create-page?wireframe=2" class="button --info">Créer une page de type #2</a>
+    <a href="create-page?wireframe=3" class="button --warning">Créer une page de type #3</a>
+</section>
 <table>
     <tr>
         <th>ID</th>

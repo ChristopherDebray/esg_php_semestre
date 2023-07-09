@@ -430,7 +430,7 @@ class Page extends Validator {
           "submit"=>"Envoyer",
           "cancel"=>"Annuler",
           "redirectIfCancel"=>"dashboard",
-          "title"=>"Créer une page"
+          "title"=>"Créer / modifier une page"
       ],
       "inputs"=>array_merge($this->getConfigInputs(), $this->getHeaderInputs(), $this->themes[$selectedTheme], $this->getFooterInputs())
     ];
