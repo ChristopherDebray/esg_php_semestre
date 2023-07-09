@@ -1,6 +1,6 @@
 default:
-  controller: "Front"
-  action: "home"
+  controller: "PageController"
+  action: "listPages"
 
 contact:
   controller: "Front"

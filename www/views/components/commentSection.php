@@ -7,6 +7,12 @@
         <span>
           <?php
             echo $comment->getUser()->getFirstname() . " " . $comment->getUser()->getLastname();
+            if ($comment->isVerified()) { ?>
+              <span class="badge badge--success">commentaire vérifié</span>
+            <?php
+            } elseif ($comment->isSignaled()) { ?>
+              <span class="badge badge--danger">commentaire signalé</span>
+            <?php }
           ?>
         </span>
         <span>
@@ -17,7 +23,9 @@
             echo $formattedDate;
           ?>
         </span>
+        <?php if(!$comment->isVerified() && !$comment->isSignaled()): ?>
         <a class="button --danger" href='signal-comment?id=<?=$comment->getId()?>&page=<?= $comment->getPage()->getSlug()?>' >Signaler</a>
+        <?php endif; ?>
       </div>
       <div class="col-12 font--md pt-5">
         <?= $comment->getContent() ?>
