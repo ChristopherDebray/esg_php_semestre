@@ -1,5 +1,6 @@
 <?php
 namespace App\core;
+
 class View{
 
     private $view;
@@ -20,7 +21,9 @@ class View{
     public function setView(String $view): void
     {
         if( !file_exists("views/".$view.".php")){
-            die("La vue ".$view." n'existe pas");
+            // La vue n'existe pas
+            Router::error404();
+            exit();
         }else{
             $this->view = "views/".$view.".php";
         }
@@ -28,7 +31,9 @@ class View{
     public function setTemplate(String $template): void
     {
         if( !file_exists("views/".$template.".php")){
-            die("Le template ".$template." n'existe pas");
+            // Le template n'existe pas
+            Router::error404();
+            exit();
         }else{
             $this->template = "views/".$template.".php";
         }
@@ -42,7 +47,9 @@ class View{
     public function modal($name, $config, $errors): void
     {
         if(!file_exists("views/modals/".$name.".modal.php")){
-            die("Le modal ".$name." n'existe pas");
+            // Le modal n'existe pas
+            Router::error404();
+            exit();
         }
         include "views/modals/".$name.".modal.php";
     }
@@ -52,6 +59,4 @@ class View{
         extract($this->data);
         include $this->template;
     }
-
 }
-

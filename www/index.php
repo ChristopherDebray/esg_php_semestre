@@ -20,5 +20,5 @@ if(file_exists("routes.yml"))
 {
     $router = Router::getInstance()->getRoute();
 } else {
-    die("Page 404 : Not found / ERROR #4");
+    return Router::error404("Page introuvable / ERROR &6H&76C");
 }

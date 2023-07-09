@@ -3,6 +3,7 @@
 namespace App\core;
 
 use App\core\Security;
+use App\core\View;
 use App\models\Page;
 
 final class Router
@@ -88,19 +89,19 @@ final class Router
 
         //Si l'uri n'existe pas dans $routes die page 404
         if(!$this->isSlugExist($slug)) {
-            die("Page 404 : Not found / ERROR #1");
+            return Router::error404("Page introuvable / ERROR Z1702!4");
         }
 
         //Sinon si il n'y a pas de fichier controller correspondant die absence du fichier controller
         if(!file_exists("controllers/".$this->getController().".php")) {
-            die("Page 404 : Not found / ERROR #5");
+            return Router::error404("Page introuvable / ERROR 69MW5W@");
         }
 
         //Sinon si l'action n'existe pas die action inexistante
         include "controllers/".$this->getController().".php";
         $namespaceController = "App\controllers\\";
         if(!class_exists($namespaceController.$this->getController())){
-            die("Page 404 : Not found / ERROR #6");
+            return Router::error404("Page introuvable / ERROR ET8U84@");
         }
 
         if ($this->getPermission() && !Security::hasRole($this->getPermission())) {
@@ -112,7 +113,7 @@ final class Router
 
         //Sinon appel de l'action
         if(!method_exists($controller, $this->getAction())){
-            die("Page 404 : Not found / ERROR #7");
+            return Router::error404("Page introuvable / ERROR 56H#BB1");
         }
 
         return $controller->{$this->getAction()}($this->getActionParameter());
@@ -127,13 +128,13 @@ final class Router
             if(!empty(self::$routes[$slug]["controller"])) {
                 $this->setController(self::$routes[$slug]["controller"]);
             } else {
-                die("Page 404 : Not found / ERROR #2");
+                return false;
             }
 
             if (!empty(self::$routes[$slug]["action"])) {
                 $this->setAction(self::$routes[$slug]["action"]);
             } else {
-                die("Page 404 : Not found / ERROR #3");
+                return false;
             }
 
             if (!empty(self::$routes[$slug]["permission"])) {
@@ -188,5 +189,11 @@ final class Router
         }
 
         return "/";
+    }
+
+    public static function error404($message = null): void
+    {
+        $view = new View('error/404', 'front');
+        $view->assign("message", $message);
     }
 }
